@@ -12,98 +12,108 @@ import networkx as nx
 from pm4py.algo.discovery.dfg import algorithm as dfg_discovery
 from pm4py.algo.discovery.causal import algorithm as causal_algorithm
 from pm4py.algo.discovery.causal.algorithm import CAUSAL_ALPHA
+from pm4py.algo.discovery.causal.algorithm import CAUSAL_HEURISTIC
 
 
 def replace(trace, cyc, cyc_without_A_elements):
     indexes = []
     for i in range(len(trace)):  # ищем цикл в трассе
         if trace[i:i + len(cyc)] == cyc:
-            indexes.append((i, i + len(cyc)))
+            indexes.extend([i, i + len(cyc)])
     trace_after_replace = trace
-    del trace_after_replace[indexes[0]:indexes[1]]  # надеюсь тут не напутала с индексами, удаляем сус из трассы
-    trace_after_replace.insert(indexes[0],
-                               cyc_without_A_elements)  # вставляем на место cycа сус без элементов компоненты связности
+    if len(indexes) > 1:
+        del trace_after_replace[indexes[0]:indexes[1]]  # удаляем сус из трассы
+        trace_after_replace[indexes[0]:indexes[0]] = list(cyc_without_A_elements)
     return trace_after_replace
 
 
 def clear(cyc, A) -> list:
-    return cyc.difference_update(A)
+    if len(cyc.difference(A)) > 0:
+        return cyc.difference(A)
+    else:
+        return []
 
 
-class ShorterStartTaskEndKeeper(object):
+class ModelStructureRecogniser(object):
     def __init__(self, log):
         self.log = log
         self.visited_traces = set()
         self.no_nested_cyc = True
-        # HashMap<Integer, Vector<String>> tinvariants = new HashMap< Integer, Vector<String>>();
-        self.t_invariants = {} #dict[index_of_t_inv: [t_inv_elements]]
+        self.t_invariants = set()
         self.visited_cycs = {}
-        self.relations = {}
+        self.causal_relations = {}
+        self.parallel_relations = {}
 
     def fill_t_inv(self):
+        """
+            Computes t invariants of a given log.
+
+            Returns
+            -----------
+            set of t-invariants (tuples)
+                {()}
+            """
+        A = set()
         dfg = dfg_discovery.apply(self.log)  # строим Directly follows graph для всего лога, чтобы найти отношения
 
-        self.relations = {k: v for k, v in
-                            causal_algorithm.apply(dfg, variant=CAUSAL_ALPHA).items() if
-                            v > 0}.keys()
+        self.causal_relations = {k: v for k, v in
+                                 causal_algorithm.apply(dfg, variant=CAUSAL_HEURISTIC).items() if
+                                 v > 0}.keys()
+        self.parallel_relations = {(f, t) for (f, t) in dfg if (t, f) in dfg}
 
         for trace in self.log:  # в оригинале был прогресс от лога отдельной переменной, а лог глобальной, в процедуре
             # запускалось от текущего прогресса и он инкрементился, то есть переходил к следующей трассе
-            if trace:  # if (!trace.isEmpty()) {
-                if trace not in self.visited_traces: #класть в посещенные трассы только массив и сравнивать только его, не всю трассу с именем
-                    self.visited_traces.add(trace)  # чтобы не обрабатывать одинаковые трассы
-                    # print("Trace number: " + trace.index)
+            trace_to_events_names_list = [event['concept:name'] for event in trace]
+            if trace:
+                if tuple(
+                        trace_to_events_names_list) not in self.visited_traces:  # класть в посещенные трассы только массив и сравнивать только его, не всю трассу с именем
+                    self.visited_traces.add(
+                        tuple(trace_to_events_names_list))  # чтобы не обрабатывать одинаковые трассы
                     flag = True
                     while flag:
                         # Find the elementary cycle in trace if there are some
-                        ecyc = self.e_cyc(trace)
-                        if self.no_nested_cyc:  # if(noNestedCyc){
-                            ecyc = sorted(ecyc, key=lambda x: x['concept:name'])
-                            self.add_invariant(ecyc)
-                            flag = False  # вместо очистки трассы из лога 70 строка в джаве
-                        else:
-                            if tuple(ecyc) not in self.visited_cycs:  # if( !visitedeCycs.containsKey(ecyc) ){
-                                dfg = dfg_discovery.apply(self.log)   #строим Directly follows graph для всего лога, чтобы найти отношения
-
-                                causal_relations = {k: v for k, v in
-                                                    causal_algorithm.apply(dfg, variant=CAUSAL_ALPHA).items() if
-                                                    v > 0}.keys() #dfg -> causal relations (dict)
-                                #dfg = dfg_discovery.apply(ecyc)
-
-                                causality_graph = variants.alpha.apply(dfg)
-                                strongly_connected_components_of_eCyc = nx.strongly_connected_components(
-                                    causality_graph)  # page 4 of tapia thesis, line 80 in prom TinvOperations
-                                # создаем клон ecyc (зочем?)
-                                for nodes_of_component in strongly_connected_components_of_eCyc:  # line 85
-                                    if len(nodes_of_component) > 1:  # 87 |V_i|>1
-                                        self.t_invariants.add(tuple(i) for i in
-                                                              nodes_of_component)  # line 99 Y(lambda)<-Y(lambda)\union V_i (так как множество инвариантов - set, то повторов не будет)
-                                        # 89 //Update trace with replace and clear operation
-                                        ecyc_without_t_inv_nodes = clear(set(ecyc), set(nodes_of_component))
-                                        trace = replace(trace, ecyc, ecyc_without_t_inv_nodes)
-                                        # 91-92 for(String del : temp){
-                                    #        ecycClone.remove(del);}
-                                    # 95-96?
-                                    ecyc = self.e_cyc(trace)
-                                    self.visited_cycs[tuple(ecyc)] = nodes_of_component
+                        ecyc = self.e_cyc(trace_to_events_names_list)
+                        if ecyc is not None:
+                            if self.no_nested_cyc:
+                                ecyc = sorted(ecyc)
+                                self.t_invariants.add(ecyc)
+                                flag = False
+                            else:
+                                if tuple(ecyc) not in self.visited_cycs:
+                                    causality_graph = self.build_causality_graph(ecyc)
+                                    strongly_connected_components_of_eCyc = nx.strongly_connected_components(
+                                        causality_graph)  # page 4 of tapia thesis, line 80 in prom TinvOperations
+                                    for nodes_of_component in strongly_connected_components_of_eCyc:  # line 85
+                                        if len(nodes_of_component) > 1:  # 87 |V_i|>1
+                                            if tuple(nodes_of_component) not in self.t_invariants:
+                                                self.t_invariants.add(tuple(nodes_of_component))
+                                            A.update(nodes_of_component)
+                                    ecyc_without_t_inv_nodes = clear(set(ecyc), A)
+                                    trace_to_events_names_list = replace(trace_to_events_names_list, ecyc,
+                                                                         ecyc_without_t_inv_nodes)
+                                    self.visited_cycs[tuple(
+                                        ecyc)] = nodes_of_component  # мб только если в компоненте больше 1 элемента
+                                    ecyc = self.e_cyc(trace_to_events_names_list)
                                 else:
-                                    for aux in self.visited_cycs:  # line 114
-                                        ecyc_without_t_inv_nodes = clear(set(ecyc), set(aux))
-                                        trace = replace(trace, ecyc, ecyc_without_t_inv_nodes)
+                                    for aux in self.visited_cycs.get(tuple(ecyc)):
+                                        A.add(aux)
+                                        ecyc_without_t_inv_nodes = clear(set(ecyc), A)
+                                        trace_to_events_names_list = replace(trace_to_events_names_list, ecyc,
+                                                                             ecyc_without_t_inv_nodes)
+                                    ecyc = self.e_cyc(trace_to_events_names_list)
+                                    if ecyc is None or self.visited_cycs.get(tuple(ecyc)) is None:
+                                        flag = False
+                                        # line 114
 
-                                    # if (self.visited_cycs.get(ecyc).size() == 0):
-                                    #    trace = removeAllXevent(trace, ecyc.get(0));
-
-                                    # line 114
-
-                        flag = flag and (len(ecyc) > 0)  # until trace not empty and cyc_e != empty set
+                        flag = flag and (ecyc is not None) and (
+                                    len(ecyc) > 0)  # until trace not empty and cyc_e != empty set
 
     # Find the first elementary cyc in the trace
     def e_cyc(self, trace):
         analyzed_events = list()
         ecyc = list()
         for i in range(len(trace)):
-            event = trace[i]
+            event = trace[i]  # ['concept:name']
             if len(analyzed_events) > 0:
                 if event in analyzed_events:
                     x = analyzed_events.index(event)
@@ -113,9 +123,9 @@ class ShorterStartTaskEndKeeper(object):
                     self.no_nested_cyc = False
                     return ecyc
             analyzed_events.append((event))
-        return analyzed_events
+        return None
 
-    def add_invariant(self, invariant_to_add): #invariant_to_add should be sorted beforehand
+    def add_invariant(self, invariant_to_add):  # invariant_to_add should be sorted beforehand
         add = True
         t_inv_to_remove = list()
         if invariant_to_add not in self.t_invariants.values():
@@ -132,34 +142,13 @@ class ShorterStartTaskEndKeeper(object):
             if add:
                 self.t_invariants[len(self.t_invariants)] = invariant_to_add
 
-    def build_digraph_from_petri_net(net):
-        """
-        Builds a directed graph from a Petri net
-            (for the purpose to add invisibles between inclusive gateways)
-        Parameters
-        -------------
-        net
-            Petri net
-        Returns
-        -------------
-        digraph
-            Digraph
-        """
-        import networkx as nx
-        graph = nx.DiGraph()
-        for place in net.places:
-            graph.add_node(place.name)
-        for trans in net.transitions:
-            in_places = [x.source for x in list(trans.in_arcs)]
-            out_places = [x.target for x in list(trans.out_arcs)]
-            for pl1 in in_places:
-                for pl2 in out_places:
-                    graph.add_edge(pl1.name, pl2.name)
-        return graph
-
     def build_causality_graph(self, cyc):
         import networkx as nx
         graph = nx.DiGraph()
-        for place in cyc:
-            graph.add_node(place) #если в сус лежат не просто имена то здесь надо достать имя
-        #for in self.relations.
+        for transition in cyc:
+            graph.add_node(transition)
+        for relation in self.causal_relations:
+            if relation not in self.parallel_relations:
+                if relation[0] in graph.nodes and relation[1] in graph.nodes:
+                    graph.add_edge(relation[0], relation[1])
+        return graph
