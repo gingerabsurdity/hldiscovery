@@ -34,7 +34,7 @@ def clear(cyc, A) -> list:
         return []
 
 
-class ModelStructureRecogniser(object):
+class TInvRecogniser(object):
     def __init__(self, log):
         self.log = log
         self.visited_traces = set()
