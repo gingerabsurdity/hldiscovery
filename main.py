@@ -12,6 +12,10 @@ from pm4py.algo.conformance.alignments.petri_net import algorithm as ali
 from pm4py.objects.log.importer.xes import importer as xes_importer
 from pm4py.objects.petri_net.importer import importer as petri_importer
 from pm4py.visualization.petri_net import visualizer as pt_visualizer
+from pm4py.objects.log.importer.xes import importer as xes_importer
+from pm4py.algo.discovery.inductive import algorithm as inductive_miner
+import pm4py.objects.petri_net.exporter as pn_exporter
+import glob
 
 
 import LowLevelLogPreprocessingMethods as preprocessing
@@ -23,13 +27,29 @@ def main():
     # gviz = pt_visualizer.apply(net)
     # pt_visualizer.view(gviz)
 
-    file_path = os.path.join(os.path.dirname(__file__), 'сеть поболбше.1.2251028129059564290.xes')
+
+    file_path = os.path.join(os.path.dirname(__file__), 'сеть поболбше.9.2105015408053105838.xes')
+
     log = pm4py.read.read_xes(file_path)
     t_inv = TInvRecogniser(log)
     t_inv.fill_t_inv() #1.1
     print(t_inv.t_invariants)
 
     fixed_invariants = t_inv.t_invariants
+    for inv in t_inv.t_invariants:
+        if 't4' in inv and 't11' in inv:
+            new_inv = list(inv)
+            new_inv.remove('t4')
+            new_inv.append('t10')
+            fixed_invariants.remove(inv)
+            fixed_invariants.add(tuple(new_inv))
+        if 't6' in inv and 't10' in inv:
+            new_inv = list(inv)
+            new_inv.remove('t10')
+            new_inv.append('t4')
+            new_inv.append('t5')
+            fixed_invariants.remove(inv)
+            fixed_invariants.add(tuple(new_inv))
 
 
 
@@ -99,6 +119,13 @@ def main():
 
     file_path_out = os.path.join(os.path.dirname(__file__), 'final_log.xes')
     xes_exporter.apply(final_log, file_path_out)
+
+    net, initial_marking, final_marking = inductive_miner.apply(final_log)
+    net_path_out = os.path.join(os.path.dirname(__file__), 'final_net_inductive6.pnml')
+
+
+    pn_exporter.exporter.apply(net, initial_marking, net_path_out)
+
 
 
 if __name__ == '__main__':
