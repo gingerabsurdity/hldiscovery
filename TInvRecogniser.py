@@ -117,6 +117,7 @@ class TInvRecogniser(object):
             if len(analyzed_events) > 0:
                 if event in analyzed_events:
                     x = analyzed_events.index(event)
+                    #ecyc_len = x + trace[x+1:len(trace)].index(event)
                     while x < len(analyzed_events):
                         ecyc.append(analyzed_events[x])
                         x += 1

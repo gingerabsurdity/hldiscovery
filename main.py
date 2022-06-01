@@ -4,323 +4,102 @@ from copy import deepcopy
 from pm4py.objects.log.obj import EventLog, Trace, Event
 
 from TInvRecogniser import TInvRecogniser
+from pm4py.objects.log.exporter.xes import exporter as xes_exporter
+
+import os
+import time
+from pm4py.algo.conformance.alignments.petri_net import algorithm as ali
+from pm4py.objects.log.importer.xes import importer as xes_importer
+from pm4py.objects.petri_net.importer import importer as petri_importer
+from pm4py.visualization.petri_net import visualizer as pt_visualizer
+
+
 import LowLevelLogPreprocessingMethods as preprocessing
 
 
 def main():
+    # pnml_path = os.path.join(os.path.dirname(__file__), "example.pnml")
+    # net, marking, fmarking = petri_importer.apply(pnml_path)
+    # gviz = pt_visualizer.apply(net)
+    # pt_visualizer.view(gviz)
+
     file_path = os.path.join(os.path.dirname(__file__), 'сеть поболбше.1.2251028129059564290.xes')
     log = pm4py.read.read_xes(file_path)
     t_inv = TInvRecogniser(log)
-    t_inv.fill_t_inv()
+    t_inv.fill_t_inv() #1.1
     print(t_inv.t_invariants)
+
+    fixed_invariants = t_inv.t_invariants
+
+
+
+    #1.2 find in log all possible cycle bodies to get a set of tuples
+    # каждому циклу поставить в соответствие индекс
+    possible_cycles_bodies, log_without_cycles_bodies = preprocessing.change_cycles_bodies_to_special_sym(log, fixed_invariants, 'cycle')
+    print(log_without_cycles_bodies)
+    #в каждой трассе заменить каждое полное тело цикла на "cycleN" где N - индекс цикла
 
     #mapping
     file_path = os.path.join(os.path.dirname(__file__), 'mapping.json')
     mapping = preprocessing.hierarchical_events_mapping(file_path)
 
+    #transform log into hl, cycles remain as same symbols
+
     abstract_traces = []
-    for trace in log:
-        trace_to_events_names_list = [event['concept:name'] for event in trace]
-        abstract_traces.extend(preprocessing.detailed_events_to_abstract(trace_to_events_names_list, mapping))
+    for trace in log_without_cycles_bodies:
+        # trace_to_events_names_list = [event['concept:name'] for event in trace]
+        abstract_traces.extend(preprocessing.detailed_events_to_abstract(trace, mapping))
     print(abstract_traces)
+    print(type(abstract_traces[1][1]))
 
-def generate_large_log():
-    L = EventLog()
-    t0 = Event()
-    t0["concept:name"] = "t0"
-    t1 = Event()
-    t1["concept:name"] = "t1"
-    t2 = Event()
-    t2["concept:name"] = "t2"
-    t3 = Event()
-    t3["concept:name"] = "t3"
-    t4 = Event()
-    t4["concept:name"] = "t4"
-    t5 = Event()
-    t5["concept:name"] = "t5"
-    t6 = Event()
-    t6["concept:name"] = "t6"
-    t7 = Event()
-    t7["concept:name"] = "t7"
-    t8 = Event()
-    t8["concept:name"] = "t8"
-    t9 = Event()
-    t9["concept:name"] = "t9"
-    t10 = Event()
-    t10["concept:name"] = "t10"
-    t11 = Event()
-    t11["concept:name"] = "t11"
-    t12 = Event()
-    t12["concept:name"] = "t12"
-    t13 = Event()
-    t13["concept:name"] = "t13"
-    t14 = Event()
-    t14["concept:name"] = "t14"
-    t15 = Event()
-    t15["concept:name"] = "t15"
-    t16 = Event()
-    t16["concept:name"] = "t16"
-    t17 = Event()
-    t17["concept:name"] = "t17"
-    t18 = Event()
-    t18["concept:name"] = "t18"
-    t19 = Event()
-    t19["concept:name"] = "t19"
-    t20 = Event()
-    t20["concept:name"] = "t20"
-    t21 = Event()
-    t21["concept:name"] = "t21"
-    t22 = Event()
-    t22["concept:name"] = "t22"
-    t23 = Event()
-    t23["concept:name"] = "t23"
-    t24 = Event()
-    t24["concept:name"] = "t24"
-    t25 = Event()
-    t25["concept:name"] = "t25"
-    t26 = Event()
-    t26["concept:name"] = "t26"
-    t27 = Event()
-    t27["concept:name"] = "t27"
-    t = Trace() #без циклов
-    t.append(t0)
-    t.append(t1)
-    t.append(t3)
-    t.append(t13)
-    t.append(t4)
-    t.append(t5)
-    t.append(t6)
-    t.append(t14)
-    t.append(t15)
-    t.append(t7)
-    t.append(t8)
-    t.append(t9)
-    t.append(t16)
-    t.append(t17)
-    t.append(t18)
-    t.append(t25)
-    t.append(t26)
-    t.append(t27)
-    for i in range(3):
-        L.append(deepcopy(t))
-    t = Trace() #без циклов
-    t.append(t0)
-    t.append(t2)
-    t.append(t3)
-    t.append(t13)
-    t.append(t10)
-    t.append(t11)
-    t.append(t14)
-    t.append(t15)
-    t.append(t12)
-    t.append(t16)
-    t.append(t17)
-    t.append(t18)
-    t.append(t25)
-    t.append(t26)
-    t.append(t27)
-    for i in range(4):
-        L.append(deepcopy(t))
-    t = Trace()  # без циклов
-    t.append(t0)
-    t.append(t2)
-    t.append(t3)
-    t.append(t13)
-    t.append(t10)
-    t.append(t11)
-    t.append(t14)
-    t.append(t15)
-    t.append(t12)
-    t.append(t16)
-    t.append(t17)
-    t.append(t18)
-    t.append(t22)
-    t.append(t23)
-    t.append(t24)
-    for i in range(4):
-        L.append(deepcopy(t))
-    t = Trace() #c циклом
-    t.append(t0)
-    t.append(t2)
-    t.append(t3)
-    t.append(t13)
-    t.append(t10)
-    t.append(t11)
-    t.append(t14)
-    t.append(t15)
-    t.append(t12)
-    t.append(t16)
-    t.append(t17)
-    t.append(t18)
-    t.append(t19)
-    t.append(t20)
-    t.append(t21)
-    t.append(t13)
-    t.append(t10)
-    t.append(t11)
-    t.append(t14)
-    t.append(t15)
-    t.append(t12)
-    t.append(t16)
-    t.append(t17)
-    t.append(t18)
-    t.append(t25)
-    t.append(t26)
-    t.append(t27)
-    for i in range(4):
-        L.append(deepcopy(t))
-    t = Trace()  # без циклов
-    t.append(t0)
-    t.append(t2)
-    t.append(t3)
-    t.append(t13)
-    t.append(t10)
-    t.append(t11)
-    t.append(t14)
-    t.append(t15)
-    t.append(t12)
-    t.append(t16)
-    t.append(t17)
-    t.append(t18)
-    t.append(t19)
-    t.append(t20)
-    t.append(t21)
-    t.append(t13)
-    t.append(t10)
-    t.append(t11)
-    t.append(t14)
-    t.append(t15)
-    t.append(t12)
-    t.append(t16)
-    t.append(t17)
-    t.append(t18)
-    t.append(t19)
-    t.append(t20)
-    t.append(t21)
-    t.append(t13)
-    t.append(t4)
-    t.append(t5)
-    t.append(t6)
-    t.append(t14)
-    t.append(t15)
-    t.append(t7)
-    t.append(t8)
-    t.append(t9)
-    t.append(t16)
-    t.append(t17)
-    t.append(t18)
-    t.append(t22)
-    t.append(t23)
-    t.append(t24)
-    for i in range(4):
-        L.append(deepcopy(t))
-    return L
+    abstract_cycle_bodies = {}
+    for cycle_body in possible_cycles_bodies.keys():
+        abstract_cycle_bodies[cycle_body] = preprocessing.detailed_events_to_abstract(possible_cycles_bodies.get(cycle_body), mapping)
 
-def generate_small_log():
-    L = EventLog()
-    t0 = Event()
-    t0["concept:name"] = "t0"
-    t1 = Event()
-    t1["concept:name"] = "t1"
-    t2 = Event()
-    t2["concept:name"] = "t2"
-    t3 = Event()
-    t3["concept:name"] = "t3"
-    t4 = Event()
-    t4["concept:name"] = "t4"
-    t5 = Event()
-    t5["concept:name"] = "t5"
-    t6 = Event()
-    t6["concept:name"] = "t6"
-    t7 = Event()
-    t7["concept:name"] = "t7"
-    t8 = Event()
-    t8["concept:name"] = "t8"
-    t9 = Event()
-    t9["concept:name"] = "t9"
-    t10 = Event()
-    t10["concept:name"] = "t10"
-    t11 = Event()
-    t11["concept:name"] = "t11"
-    t12 = Event()
-    t12["concept:name"] = "t12"
-    t13 = Event()
-    t13["concept:name"] = "t13"
-    t14 = Event()
-    t14["concept:name"] = "t14"
-    t15 = Event()
-    t15["concept:name"] = "t15"
-    t16 = Event()
-    t16["concept:name"] = "t16"
-    t17 = Event()
-    t17["concept:name"] = "t17"
-    t18 = Event()
-    t18["concept:name"] = "t18"
-    t19 = Event()
-    t19["concept:name"] = "t19"
-    t20 = Event()
-    t20["concept:name"] = "t20"
-    t21 = Event()
-    t21["concept:name"] = "t21"
-    t22 = Event()
-    t22["concept:name"] = "t22"
-    t23 = Event()
-    t23["concept:name"] = "t23"
-    t24 = Event()
-    t24["concept:name"] = "t24"
-    t25 = Event()
-    t25["concept:name"] = "t25"
-    t26 = Event()
-    t26["concept:name"] = "t26"
-    t27 = Event()
-    t27["concept:name"] = "t27"
-    t = Trace() #без циклов
-    t.append(t0)
-    t.append(t2)
-    t.append(t3)
-    t.append(t13)
-    t.append(t10)
-    t.append(t11)
-    t.append(t14)
-    t.append(t15)
-    t.append(t12)
-    t.append(t16)
-    t.append(t17)
-    t.append(t18)
-    t.append(t25)
-    t.append(t26)
-    t.append(t27)
-    L.append(deepcopy(t))
-    t = Trace() #c циклом
-    t.append(t0)
-    t.append(t2)
-    t.append(t3)
-    t.append(t13)
-    t.append(t10)
-    t.append(t11)
-    t.append(t14)
-    t.append(t15)
-    t.append(t12)
-    t.append(t16)
-    t.append(t17)
-    t.append(t18)
-    t.append(t19)
-    t.append(t20)
-    t.append(t21)
-    t.append(t13)
-    t.append(t10)
-    t.append(t11)
-    t.append(t14)
-    t.append(t15)
-    t.append(t12)
-    t.append(t16)
-    t.append(t17)
-    t.append(t18)
-    t.append(t25)
-    t.append(t26)
-    t.append(t27)
-    L.append(deepcopy(t))
-    return L
+    abstract_traces_with_hl_cycles_bodies = []
+    # для каждой трассы в abstract_traces заменяем все циклы на их высокоуровневое представление
+    for trace in abstract_traces:
+        has_cycle = False
+        new_trace = list.copy(trace)
+        for i in possible_cycles_bodies.keys():
+            j = 0
+            while j < len(new_trace):
+                event = new_trace[j]
+                if event == 'cycle' + str(i):
+                   has_cycle = True
+                   for body in abstract_cycle_bodies[i]:
+                       abstract_trace_with_hl_cycle_body = list(new_trace[0:j]) + body + list(new_trace[j + 1:len(new_trace)])
+                       abstract_traces_with_hl_cycles_bodies.append(abstract_trace_with_hl_cycle_body)
+                       new_trace = list.copy(abstract_trace_with_hl_cycle_body)
+                j += 1
+        if not has_cycle:
+            abstract_traces_with_hl_cycles_bodies.append(new_trace)
+        #заменяем в трассе ивент на его сайкл бади преобразованное в абстрактный вид
+    trace_index_for_deleting = 0
+    while trace_index_for_deleting < len(abstract_traces_with_hl_cycles_bodies):
+        delete = False
+        for event in abstract_traces_with_hl_cycles_bodies[trace_index_for_deleting]:
+            if event.__contains__('cycle'):
+                delete = True
+        if delete:
+            del abstract_traces_with_hl_cycles_bodies[trace_index_for_deleting]
+        else:
+            trace_index_for_deleting += 1
+    print(abstract_traces_with_hl_cycles_bodies)
+    #print(type(abstract_traces[1][1]))
+
+    final_log = EventLog()
+    for trace in abstract_traces_with_hl_cycles_bodies:
+        t = Trace()
+        for event in trace:
+            e = Event()
+            e["concept:name"] = event
+            t.append(e)
+        final_log.append(t)
+
+    file_path_out = os.path.join(os.path.dirname(__file__), 'final_log.xes')
+    xes_exporter.apply(final_log, file_path_out)
+
 
 if __name__ == '__main__':
     main()
