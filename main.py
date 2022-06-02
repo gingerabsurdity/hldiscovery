@@ -22,7 +22,7 @@ import LowLevelLogPreprocessingMethods as preprocessing
 
 def main():
 
-        arr = os.listdir(os.path.dirname(__file__) + "/tests/50")
+        arr = os.listdir(os.path.dirname(__file__) + "/tests/100")
         arr.sort()
         ln = 0
 
@@ -30,7 +30,7 @@ def main():
         fitnesses = []
         for path in arr:
 
-            file_path = os.path.join(os.path.join(os.path.dirname(__file__), "tests/50"), path)
+            file_path = os.path.join(os.path.join(os.path.dirname(__file__), "tests/100"), path)
             print("start: log number " + str(ln))
             print(file_path)
 
