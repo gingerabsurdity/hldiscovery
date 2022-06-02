@@ -12,7 +12,6 @@ So in our case with cycles the value of the $fitness$ indicator is directly rela
 For 90 initial logs (10 traces in each) from the **initial logs** folder the fitness measures are next:
 
 >>>
-
 1.0
 
 0.8554464285714286
@@ -192,5 +191,4 @@ For 90 initial logs (10 traces in each) from the **initial logs** folder the fit
 0.9094911937377691
 
 0.9125371089289792
-
 <<<
