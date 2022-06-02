@@ -11,7 +11,6 @@ $$ fitness(σ,N) = 1/2*(1-m/c)+1/2*(1-r/p) $$
 So in our case with cycles the value of the $fitness$ indicator is directly related to the coverage of the initial logs, for small logs - the coverage of possible model behaviour is quite limited, which directly affects the ability of the algorithm to correctly extract information about cycles.
 For 90 initial logs (10 traces in each) from the **initial logs** folder the fitness measures are next:
 
->>>
 1.0
 
 0.8554464285714286
@@ -191,4 +190,4 @@ For 90 initial logs (10 traces in each) from the **initial logs** folder the fit
 0.9094911937377691
 
 0.9125371089289792
-<<<
+
