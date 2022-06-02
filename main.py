@@ -27,17 +27,18 @@ import LowLevelLogPreprocessingMethods as preprocessing
 
 
 def main():
-    original_stdout = sys.stdout
-    with open('output.txt', 'w') as f:
+    #original_stdout = sys.stdout
+    #with open('output.txt', 'w') as f:
 
         arr = os.listdir(os.path.dirname(__file__) + "/tests/initial_logs")
+        arr.sort()
         ln = 0
         ll_net,ll_i_m, ll_f_m = petri_importer.apply(os.path.join(os.path.join(os.path.dirname(__file__), "example.pnml")))
         hl_net, hl_i_m, hl_f_m = petri_importer.apply(os.path.join(os.path.join(os.path.dirname(__file__), "highlevelnet.pnml")))
 
         for path in arr:
-            print("start: log number " + str(ln))
-            #sys.stdout = f
+           # print("start: log number " + str(ln))
+           # sys.stdout = f
 
             file_path = os.path.join(os.path.join(os.path.dirname(__file__), "tests/initial_logs"), path)
             print("start: log number " + str(ln))
@@ -71,7 +72,22 @@ def main():
             t_inv.fill_t_inv() #1.1
 
             fixed_invariants = t_inv.t_invariants
-
+            for inv in t_inv.t_invariants:
+                if 't4' in inv and 't11' in inv:
+                    new_inv = list(inv)
+                    new_inv.remove('t4')
+                    new_inv.append('t10')
+                    if(inv in fixed_invariants):
+                        fixed_invariants.remove(inv)
+                        fixed_invariants.add(tuple(new_inv))
+                if 't6' in inv and 't10' in inv:
+                    new_inv = list(inv)
+                    new_inv.remove('t10')
+                    new_inv.append('t4')
+                    new_inv.append('t5')
+                    if (inv in fixed_invariants):
+                        fixed_invariants.remove(inv)
+                        fixed_invariants.add(tuple(new_inv))
 
             #1.2 find in log all possible cycle bodies to get a set of tuples
             # каждому циклу поставить в соответствие индекс
@@ -92,6 +108,7 @@ def main():
                 abstract_cycle_bodies[cycle_body] = preprocessing.detailed_events_to_abstract(possible_cycles_bodies.get(cycle_body), mapping)
 
             abstract_traces_with_hl_cycles_bodies = []
+            trace_index = 0
             # для каждой трассы в abstract_traces заменяем все циклы на их высокоуровневое представление
             for trace in abstract_traces:
                 has_cycle = False
@@ -103,11 +120,36 @@ def main():
                         if event == 'cycle' + str(i):
                            has_cycle = True
                            for body in abstract_cycle_bodies[i]:
+                               for event_hl in set(body):
+                                   if new_trace.__contains__(event_hl):
+                                       if new_trace.index(event_hl) < j:
+                                           body.remove(event_hl)
+                                       else:
+                                           new_trace.remove(event_hl)
                                abstract_trace_with_hl_cycle_body = list(new_trace[0:j]) + body + list(new_trace[j + 1:len(new_trace)])
                                abstract_traces_with_hl_cycles_bodies.append(abstract_trace_with_hl_cycle_body)
+                               # generated = False
+                               # for event_hl in set(body):
+                               #     if abstract_trace_with_hl_cycle_body.count(event_hl) > 1:
+                               #         generated = True
+                               #           # and len(abstract_traces[trace_index])>len(set(abstract_traces[trace_index])):
+                               #         traces_with_event = preprocessing.generate_traces_by_duplicated_events(
+                               #             abstract_trace_with_hl_cycle_body, event_hl)
+                               #         set_traces_with_event = set()
+                               #         for draft_trace in traces_with_event:
+                               #             draft_trace = preprocessing.remove_stuttering(draft_trace)
+                               #             set_traces_with_event.add(tuple(draft_trace))
+                               #         abstract_trace_with_hl_cycle_body_list = [list(x) for x in set_traces_with_event][0]
+                               #         abstract_traces_with_hl_cycles_bodies.append(abstract_trace_with_hl_cycle_body_list)
+                               #
+                               #             #trace_index += len(set_traces_with_event)
+                               # if not generated:
+                               #     abstract_traces_with_hl_cycles_bodies.append(abstract_trace_with_hl_cycle_body)
+
                                new_trace = list.copy(abstract_trace_with_hl_cycle_body)
                         j += 1
                 if not has_cycle:
+
                     abstract_traces_with_hl_cycles_bodies.append(new_trace)
                 #заменяем в трассе ивент на его сайкл бади преобразованное в абстрактный вид
             trace_index_for_deleting = 0
@@ -139,8 +181,6 @@ def main():
             net_file_name = 'final_net_ind' + str(ln) + '.pnml'
             net_path_out = os.path.join(os.path.dirname(__file__), net_file_name)
             ln += 1
-
-
             pn_exporter.exporter.apply(net, initial_marking, net_path_out)
 
             replayed_traces = token_replay.apply(final_log, hl_net, hl_i_m, hl_f_m)
@@ -149,19 +189,26 @@ def main():
             p = 0
             m = 0
             c = 0
+            trace_num = 0
 
             for trace_result in replayed_traces:
                 r += trace_result.get('remaining_tokens')
                 p += trace_result.get('produced_tokens')
                 m += trace_result.get('missing_tokens')
                 c += trace_result.get('consumed_tokens')
+                if(len(trace_result["transitions_with_problems"])>0):
+                    print("problem with transitions: ")
+                    for x in trace_result["transitions_with_problems"]:
+                        print(x.label + ", ")
+                trace_num += 1
             fitness = 0.5 * (1 - r / p) + 0.5 * (1 - m / c)
             print("fitness of final log with initial model: ")
             print(fitness)
+            print("for " + str(len(final_log)) + " traces total")
             print("end: log number" + str(ln-1))
 
-            sys.stdout = original_stdout
-            print("end: log number" + str(ln - 1))
+           # sys.stdout = original_stdout
+            #print("end: log number" + str(ln - 1))
 
 
 

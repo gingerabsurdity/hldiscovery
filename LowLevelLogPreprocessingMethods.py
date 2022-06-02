@@ -30,13 +30,16 @@ def detailed_events_to_abstract(trace, mapping):
             trace_index = 0
             #for trace in abstract_traces:
 
-            while trace_index < len(abstract_traces):
+            while trace_index < len(abstract_traces): # and len(abstract_traces[trace_index])>len(set(abstract_traces[trace_index])):
                 traces_with_event = generate_traces_by_duplicated_events(abstract_traces[trace_index], event)
+                set_traces_with_event = set()
                 for draft_trace in traces_with_event:
                     draft_trace = remove_stuttering(draft_trace)
+                    set_traces_with_event.add(tuple(draft_trace))
                 abstract_traces.remove(abstract_traces[trace_index])
-                abstract_traces.extend(traces_with_event)
-                trace_index += 1
+                abstract_traces[trace_index:trace_index] = [list(x) for x in set_traces_with_event]
+                trace_index += len(set_traces_with_event)
+
     trace_index_for_deleting = 0
     abstract_traces_set = set()
     while trace_index_for_deleting < len(abstract_traces):
@@ -91,19 +94,19 @@ def generate_traces_by_duplicated_events(trace, event):
         if trace[i] == event:
             indexes.append(k)
         k += 1
-    if len(indexes) > 1:
-        for index in indexes:
-            changed_trace = list.copy(trace)
-            j = 0
-            i = 0
-            while i < len(changed_trace):
-                if changed_trace[i] == event:
-                    if j != indexes.index(index) and i != 0:
-                        del changed_trace[i]
-                        i -= 1
-                    j += 1
-                i += 1
-            traces.append(changed_trace)
+
+    for index in indexes:
+        changed_trace = list.copy(trace)
+        j = 0
+        i = 0
+        while i < len(changed_trace):
+            if changed_trace[i] == event:
+                if j != indexes.index(index) and event != "e0":
+                    del changed_trace[i]
+                    i -= 1
+                j += 1
+            i += 1
+        traces.append(changed_trace)
     if len(traces) == 0:
         traces.append(trace)
     return traces
@@ -137,13 +140,13 @@ def change_cycles_bodies_to_special_sym(log, t_invariants, symbol): #EventLog, s
         for cycle_body in possible_cycles_bodies:
             i = 0
             for event in trace:
-                if i < len(possible_cycles_bodies.get(cycle_body)) and event["concept:name"] == possible_cycles_bodies.get(cycle_body)[i]:
+                if i < len(possible_cycles_bodies[cycle_body]) and event["concept:name"] == possible_cycles_bodies[cycle_body][i]:
                     i += 1
-            if i == len(possible_cycles_bodies.get(cycle_body)):
+            if i == len(possible_cycles_bodies[cycle_body]):
                 j = 0
 
                 for event_current in trace:
-                    if j < len(possible_cycles_bodies.get(cycle_body)) and event_current["concept:name"] == possible_cycles_bodies.get(cycle_body)[j]:
+                    if j < len(possible_cycles_bodies[cycle_body]) and event_current["concept:name"] == possible_cycles_bodies[cycle_body][j]:
                         j += 1
                         event_current["concept:name"] = symbol + str(cycle_body)
     return possible_cycles_bodies, log

@@ -56,7 +56,7 @@ class TInvRecogniser(object):
         A = set()
         dfg = dfg_discovery.apply(self.log)  # строим Directly follows graph для всего лога, чтобы найти отношения
         self.causal_relations = {k: v for k, v in
-                                 causal_algorithm.apply(dfg, variant=CAUSAL_ALPHA).items() if
+                                 causal_algorithm.apply(dfg, variant=CAUSAL_HEURISTIC).items() if
                                  v > 0}.keys()
         self.parallel_relations = {(f, t) for (f, t) in dfg if (t, f) in dfg}
 
