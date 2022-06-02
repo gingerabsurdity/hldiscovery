@@ -1,0 +1,215 @@
+<pnml>
+ <net id="n-149C-44277-0" type ="http://www.pnml.org/version-2009/grammar/ptnet">
+  <name>
+   <text>highlevelnet</text>
+  </name>
+ <page id="g-149C-442EC-1">
+  <transition id="t-149C-442FD-2">
+  <name>
+   <text>e0</text>
+    <graphics>
+     <offset x="0" y="0" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="105" y="120"/>
+   </graphics>
+  </transition>
+  <transition id="t-149C-443A8-3">
+  <name>
+   <text>e1</text>
+    <graphics>
+     <offset x="0" y="0" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="245" y="25"/>
+   </graphics>
+  </transition>
+  <transition id="t-149C-443BE-4">
+  <name>
+   <text>e3</text>
+    <graphics>
+     <offset x="0" y="0" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="240" y="175"/>
+   </graphics>
+  </transition>
+  <transition id="t-149C-443D4-5">
+  <name>
+   <text>e4</text>
+    <graphics>
+     <offset x="0" y="0" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="375" y="100"/>
+   </graphics>
+  </transition>
+  <transition id="t-149C-443E6-6">
+  <name>
+   <text>e6</text>
+    <graphics>
+     <offset x="0" y="0" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="510" y="55"/>
+   </graphics>
+  </transition>
+  <transition id="t-149C-443F7-7">
+  <name>
+   <text>e7</text>
+    <graphics>
+     <offset x="0" y="0" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="510" y="165"/>
+   </graphics>
+  </transition>
+  <transition id="t-149C-4440A-8">
+  <name>
+   <text>e5</text>
+    <graphics>
+     <offset x="0" y="0" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="225" y="285"/>
+   </graphics>
+  </transition>
+  <transition id="t-149C-4441F-9">
+  <name>
+   <text>e2</text>
+    <graphics>
+     <offset x="0" y="0" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="245" y="100"/>
+   </graphics>
+  </transition>
+  <place id="p-149C-44431-10">
+  <name>
+   <text>p0</text>
+    <graphics>
+     <offset x="0" y="-10" />
+    </graphics>
+  </name>
+  <initialMarking>
+     <text>1</text>
+    </initialMarking>
+   <graphics>
+    <position x="30" y="120"/>
+   </graphics>
+  </place>
+  <place id="p-149C-44446-11">
+  <name>
+   <text>p1</text>
+    <graphics>
+     <offset x="0" y="-10" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="165" y="60"/>
+   </graphics>
+  </place>
+  <place id="p-149C-4445A-12">
+  <name>
+   <text>p2</text>
+    <graphics>
+     <offset x="0" y="-10" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="315" y="60"/>
+   </graphics>
+  </place>
+  <place id="p-149C-4446B-13">
+  <name>
+   <text>p3</text>
+    <graphics>
+     <offset x="0" y="-10" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="165" y="175"/>
+   </graphics>
+  </place>
+  <place id="p-149C-4447E-14">
+  <name>
+   <text>p4</text>
+    <graphics>
+     <offset x="0" y="-10" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="315" y="175"/>
+   </graphics>
+  </place>
+  <place id="p-149C-44490-15">
+  <name>
+   <text>p5</text>
+    <graphics>
+     <offset x="0" y="-10" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="455" y="110"/>
+   </graphics>
+  </place>
+  <place id="p-149C-444A4-16">
+  <name>
+   <text>p6</text>
+    <graphics>
+     <offset x="0" y="-10" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="560" y="115"/>
+   </graphics>
+  </place>
+  <arc id="e-149C-444D3-17" source="p-149C-44431-10" target="t-149C-442FD-2">
+  </arc>
+  <arc id="e-149C-444E5-18" source="t-149C-443BE-4" target="p-149C-4447E-14">
+  </arc>
+  <arc id="e-149C-444E9-19" source="p-149C-4447E-14" target="t-149C-443D4-5">
+  </arc>
+  <arc id="e-149C-444ED-20" source="t-149C-443D4-5" target="p-149C-44490-15">
+  </arc>
+  <arc id="e-149C-444F1-21" source="p-149C-44490-15" target="t-149C-443E6-6">
+  </arc>
+  <arc id="e-149C-444F4-22" source="t-149C-443E6-6" target="p-149C-444A4-16">
+  </arc>
+  <arc id="e-149C-444F8-23" source="p-149C-44490-15" target="t-149C-443F7-7">
+  </arc>
+  <arc id="e-149C-444FB-24" source="t-149C-443F7-7" target="p-149C-444A4-16">
+  </arc>
+  <arc id="e-149C-44502-25" source="t-149C-4440A-8" target="p-149C-4446B-13">
+  </arc>
+  <arc id="e-149C-44505-26" source="t-149C-4440A-8" target="p-149C-44446-11">
+  </arc>
+  <arc id="e-149C-44710-27" source="p-149C-44490-15" target="t-149C-4440A-8">
+  </arc>
+  <arc id="e-149C-44715-28" source="t-149C-442FD-2" target="p-149C-44446-11">
+  </arc>
+  <arc id="e-149C-44719-29" source="t-149C-442FD-2" target="p-149C-4446B-13">
+  </arc>
+  <arc id="e-149C-4471C-30" source="p-149C-44446-11" target="t-149C-443A8-3">
+  </arc>
+  <arc id="e-149C-44720-31" source="p-149C-44446-11" target="t-149C-4441F-9">
+  </arc>
+  <arc id="e-149C-44727-32" source="t-149C-4441F-9" target="p-149C-4445A-12">
+  </arc>
+  <arc id="e-149C-4472B-33" source="t-149C-443A8-3" target="p-149C-4445A-12">
+  </arc>
+  <arc id="e-149C-4472F-34" source="p-149C-4445A-12" target="t-149C-443D4-5">
+  </arc>
+  <arc id="e-149C-44732-35" source="p-149C-4446B-13" target="t-149C-443BE-4">
+  </arc>
+ </page>
+ </net>
+</pnml>

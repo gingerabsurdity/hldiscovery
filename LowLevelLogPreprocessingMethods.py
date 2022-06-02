@@ -50,27 +50,27 @@ def detailed_events_to_abstract(trace, mapping):
         abstract_traces_set_to_lists.append(list(a_trace))
     return abstract_traces_set_to_lists
 
-def cycle_body_to_abstract(cycle, mapping):
-    abstract_trace = []
-    for detailed_event in trace:
-        keys = [key for key in mapping.keys() if detailed_event in mapping[key]]
-        if len(keys) > 0:
-            abstract_event = keys[0]
-        else:
-            abstract_trace.append(detailed_event)
-        abstract_trace.append(abstract_event)  # create abstract trace with duplicates
-    i = 0
-    abstract_trace = remove_stuttering(abstract_trace)
-    abstract_traces = [abstract_trace]
-    for event in set(abstract_trace):
-        if abstract_trace.count(event) > 1:
-            for trace in abstract_traces:
-                traces_with_event = generate_traces_by_duplicated_events(trace, event)
-                for draft_trace in traces_with_event:
-                    draft_trace = remove_stuttering(draft_trace)
-                abstract_traces.remove(trace)
-                abstract_traces.extend(traces_with_event)
-    return abstract_traces
+# def cycle_body_to_abstract(cycle, mapping):
+#     abstract_trace = []
+#     for detailed_event in trace:
+#         keys = [key for key in mapping.keys() if detailed_event in mapping[key]]
+#         if len(keys) > 0:
+#             abstract_event = keys[0]
+#         else:
+#             abstract_trace.append(detailed_event)
+#         abstract_trace.append(abstract_event)  # create abstract trace with duplicates
+#     i = 0
+#     abstract_trace = remove_stuttering(abstract_trace)
+#     abstract_traces = [abstract_trace]
+#     for event in set(abstract_trace):
+#         if abstract_trace.count(event) > 1:
+#             for trace in abstract_traces:
+#                 traces_with_event = generate_traces_by_duplicated_events(trace, event)
+#                 for draft_trace in traces_with_event:
+#                     draft_trace = remove_stuttering(draft_trace)
+#                 abstract_traces.remove(trace)
+#                 abstract_traces.extend(traces_with_event)
+#     return abstract_traces
 
 
 def remove_stuttering(trace):
@@ -91,18 +91,19 @@ def generate_traces_by_duplicated_events(trace, event):
         if trace[i] == event:
             indexes.append(k)
         k += 1
-    for index in indexes:
-        changed_trace = list.copy(trace)
-        j = 0
-        i = 0
-        while i < len(changed_trace):
-            if changed_trace[i] == event:
-                if j != indexes.index(index):
-                    del changed_trace[i]
-                    i -= 1
-                j += 1
-            i += 1
-        traces.append(changed_trace)
+    if len(indexes) > 1:
+        for index in indexes:
+            changed_trace = list.copy(trace)
+            j = 0
+            i = 0
+            while i < len(changed_trace):
+                if changed_trace[i] == event:
+                    if j != indexes.index(index) and i != 0:
+                        del changed_trace[i]
+                        i -= 1
+                    j += 1
+                i += 1
+            traces.append(changed_trace)
     if len(traces) == 0:
         traces.append(trace)
     return traces
@@ -136,13 +137,13 @@ def change_cycles_bodies_to_special_sym(log, t_invariants, symbol): #EventLog, s
         for cycle_body in possible_cycles_bodies:
             i = 0
             for event in trace:
-                if i < len(possible_cycles_bodies[cycle_body]) and event["concept:name"] == possible_cycles_bodies[cycle_body][i]:
+                if i < len(possible_cycles_bodies.get(cycle_body)) and event["concept:name"] == possible_cycles_bodies.get(cycle_body)[i]:
                     i += 1
-            if i == len(possible_cycles_bodies[cycle_body]):
+            if i == len(possible_cycles_bodies.get(cycle_body)):
                 j = 0
 
                 for event_current in trace:
-                    if j < len(possible_cycles_bodies[cycle_body]) and event_current["concept:name"] == possible_cycles_bodies[cycle_body][j]:
+                    if j < len(possible_cycles_bodies.get(cycle_body)) and event_current["concept:name"] == possible_cycles_bodies.get(cycle_body)[j]:
                         j += 1
                         event_current["concept:name"] = symbol + str(cycle_body)
     return possible_cycles_bodies, log
