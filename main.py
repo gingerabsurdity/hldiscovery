@@ -8,14 +8,8 @@ from pm4py.objects.log.exporter.xes import exporter as xes_exporter
 
 import os
 from datetime import datetime
-import time
-import time
-from pm4py.algo.conformance.alignments.petri_net import algorithm as ali
-from pm4py.objects.log.importer.xes import importer as xes_importer
-from pm4py.objects.petri_net.importer import importer as petri_importer
-from pm4py.visualization.petri_net import visualizer as pt_visualizer
-from pm4py.objects.log.importer.xes import importer as xes_importer
 
+from pm4py.objects.petri_net.importer import importer as petri_importer
 from pm4py.algo.conformance.tokenreplay import algorithm as token_replay
 
 from pm4py.algo.discovery.inductive import algorithm as inductive_miner
@@ -27,46 +21,26 @@ import LowLevelLogPreprocessingMethods as preprocessing
 
 
 def main():
-    #original_stdout = sys.stdout
-    #with open('output.txt', 'w') as f:
 
-        arr = os.listdir(os.path.dirname(__file__) + "/tests/initial_logs")
+        arr = os.listdir(os.path.dirname(__file__) + "/tests/50")
         arr.sort()
         ln = 0
-        ll_net,ll_i_m, ll_f_m = petri_importer.apply(os.path.join(os.path.join(os.path.dirname(__file__), "example.pnml")))
+
         hl_net, hl_i_m, hl_f_m = petri_importer.apply(os.path.join(os.path.join(os.path.dirname(__file__), "highlevelnet.pnml")))
-
+        fitnesses = []
         for path in arr:
-           # print("start: log number " + str(ln))
-           # sys.stdout = f
 
-            file_path = os.path.join(os.path.join(os.path.dirname(__file__), "tests/initial_logs"), path)
+            file_path = os.path.join(os.path.join(os.path.dirname(__file__), "tests/50"), path)
             print("start: log number " + str(ln))
             print(file_path)
 
             log = pm4py.read.read_xes(file_path)
 
-            replayed_traces = token_replay.apply(log, ll_net, ll_i_m, ll_f_m)
-
-            r = 0
-            p = 0
-            m = 0
-            c = 0
-
-            for trace_result in replayed_traces:
-                r += trace_result.get('remaining_tokens')
-                p += trace_result.get('produced_tokens')
-                m += trace_result.get('missing_tokens')
-                c += trace_result.get('consumed_tokens')
-            fitness = 0.5 * (1 - r / p) + 0.5 * (1 - m / c)
-            print("fitness of initial log with initial low-level model: ")
-            print(fitness)
-
             start_time = datetime.now()
-            net, initial_marking, final_marking = inductive_miner.apply(log)
 
-            print("mining time for initial log:")
-            print(datetime.now() - start_time)
+
+            #print("mining time for initial log:")
+            #print(datetime.now() - start_time)
 
             t_inv = TInvRecogniser(log)
             t_inv.fill_t_inv() #1.1
@@ -196,20 +170,23 @@ def main():
                 p += trace_result.get('produced_tokens')
                 m += trace_result.get('missing_tokens')
                 c += trace_result.get('consumed_tokens')
-                if(len(trace_result["transitions_with_problems"])>0):
-                    print("problem with transitions: ")
-                    for x in trace_result["transitions_with_problems"]:
-                        print(x.label + ", ")
+                # if(len(trace_result["transitions_with_problems"])>0):
+                #     print("problem with transitions: ")
+                #     for x in trace_result["transitions_with_problems"]:
+                #         print(x.label + ", ")
                 trace_num += 1
             fitness = 0.5 * (1 - r / p) + 0.5 * (1 - m / c)
-            print("fitness of final log with initial model: ")
+            #print("fitness of final log with initial model: ")
             print(fitness)
-            print("for " + str(len(final_log)) + " traces total")
-            print("end: log number" + str(ln-1))
+            fitnesses.append(fitness)
+            #print("for " + str(len(final_log)) + " traces total")
+            #print("end: log number" + str(ln-1))
 
-           # sys.stdout = original_stdout
-            #print("end: log number" + str(ln - 1))
-
+        sum = 0
+        for fit in fitnesses:
+            print(fit)
+            sum +=fit
+        print("total average: " + str(sum/len(fitnesses)))
 
 
 if __name__ == '__main__':

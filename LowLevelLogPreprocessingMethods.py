@@ -129,8 +129,8 @@ def find_set_of_cycles_bodies(log, t_invariants):
     for cycle_body in cycles_bodies:
         cycles_bodies_dict[i] = cycle_body
         i += 1
-    print("possible cycle bodies:")
-    print(cycles_bodies_dict)
+    #print("possible cycle bodies:")
+    #print(cycles_bodies_dict)
     return cycles_bodies_dict
 
 
