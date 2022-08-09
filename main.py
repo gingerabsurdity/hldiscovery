@@ -1,36 +1,33 @@
-import os
 import pm4py
-from copy import deepcopy
 from pm4py.objects.log.obj import EventLog, Trace, Event
-
 from TInvRecogniser import TInvRecogniser
 from pm4py.objects.log.exporter.xes import exporter as xes_exporter
-
-import os
 from datetime import datetime
-
-from pm4py.objects.petri_net.importer import importer as petri_importer
 from pm4py.algo.conformance.tokenreplay import algorithm as token_replay
-
 from pm4py.algo.discovery.inductive import algorithm as inductive_miner
 import pm4py.objects.petri_net.exporter as pn_exporter
-import sys
-
+import os
+import numpy as np
+from pm4py.objects.petri_net.utils.incidence_matrix import IncidenceMatrix
+from pm4py.objects.petri_net.importer import importer as petri_importer
+import sympy
 
 import LowLevelLogPreprocessingMethods as preprocessing
 
 
 def main():
 
-        arr = os.listdir(os.path.dirname(__file__) + "/tests/100")
+        arr = os.listdir(os.path.dirname(__file__) + "/tests/initial_logs")
         arr.sort()
         ln = 0
 
+        arr2 = arr[:3]
+
         hl_net, hl_i_m, hl_f_m = petri_importer.apply(os.path.join(os.path.join(os.path.dirname(__file__), "highlevelnet.pnml")))
         fitnesses = []
-        for path in arr:
+        for path in arr2:
 
-            file_path = os.path.join(os.path.join(os.path.dirname(__file__), "tests/100"), path)
+            file_path = os.path.join(os.path.join(os.path.dirname(__file__), "tests/initial_logs"), path)
             print("start: log number " + str(ln))
             print(file_path)
 
@@ -46,22 +43,25 @@ def main():
             t_inv.fill_t_inv() #1.1
 
             fixed_invariants = t_inv.t_invariants
-            for inv in t_inv.t_invariants:
-                if 't4' in inv and 't11' in inv:
-                    new_inv = list(inv)
-                    new_inv.remove('t4')
-                    new_inv.append('t10')
-                    if(inv in fixed_invariants):
-                        fixed_invariants.remove(inv)
-                        fixed_invariants.add(tuple(new_inv))
-                if 't6' in inv and 't10' in inv:
-                    new_inv = list(inv)
-                    new_inv.remove('t10')
-                    new_inv.append('t4')
-                    new_inv.append('t5')
-                    if (inv in fixed_invariants):
-                        fixed_invariants.remove(inv)
-                        fixed_invariants.add(tuple(new_inv))
+
+            #TODO: разобраться почему нужен был этот кусок
+
+            # for inv in t_inv.t_invariants:
+            #     if 't4' in inv and 't11' in inv:
+            #         new_inv = list(inv)
+            #         new_inv.remove('t4')
+            #         new_inv.append('t10')
+            #         if(inv in fixed_invariants):
+            #             fixed_invariants.remove(inv)
+            #             fixed_invariants.add(tuple(new_inv))
+            #     if 't6' in inv and 't10' in inv:
+            #         new_inv = list(inv)
+            #         new_inv.remove('t10')
+            #         new_inv.append('t4')
+            #         new_inv.append('t5')
+            #         if (inv in fixed_invariants):
+            #             fixed_invariants.remove(inv)
+            #             fixed_invariants.add(tuple(new_inv))
 
             #1.2 find in log all possible cycle bodies to get a set of tuples
             # каждому циклу поставить в соответствие индекс
@@ -156,6 +156,14 @@ def main():
             net_path_out = os.path.join(os.path.dirname(__file__), net_file_name)
             ln += 1
             pn_exporter.exporter.apply(net, initial_marking, net_path_out)
+
+            incidence_matrix = IncidenceMatrix(net)
+
+            # exp from book https://www7.in.tum.de/~esparza/fcbook-middle.pdf
+            t_inv = sympy.Matrix(incidence_matrix.a_matrix).nullspace()
+            t_inv = np.array(t_inv).astype(np.float64)
+
+            print(t_inv)
 
             replayed_traces = token_replay.apply(final_log, hl_net, hl_i_m, hl_f_m)
 

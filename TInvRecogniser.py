@@ -74,7 +74,7 @@ class TInvRecogniser(object):
                         ecyc = self.e_cyc(trace_to_events_names_list)
                         if ecyc is not None:
                             if self.no_nested_cyc:
-                                ecyc = sorted(ecyc)
+                                ecyc.sort() #TODO: проверить действительно ли тут сортед и если да, то в остальных местах тоже добавлять сортед
                                 self.t_invariants.add(ecyc)
                                 flag = False
                             else:
@@ -82,10 +82,26 @@ class TInvRecogniser(object):
                                     causality_graph = self.build_causality_graph(ecyc)
                                     strongly_connected_components_of_eCyc = nx.strongly_connected_components(
                                         causality_graph)  # page 4 of tapia thesis, line 80 in prom TinvOperations
+                                    nodes_of_component: list
                                     for nodes_of_component in strongly_connected_components_of_eCyc:  # line 85
                                         if len(nodes_of_component) > 1:  # 87 |V_i|>1
-                                            if tuple(nodes_of_component) not in self.t_invariants:
-                                                self.t_invariants.add(tuple(nodes_of_component))
+                                            sorted_nodes_of_comp = sorted(nodes_of_component)
+                                            if tuple(nodes_of_component) not in self.t_invariants: #TODO: добавить проверку, что одно не входит в другое и, если входит, то добавлять только то множество, которое больше
+                                                # result = False
+                                                # inv_to_remove = []
+                                                # for inv in self.t_invariants:
+                                                #     #result = all(elem in inv for elem in nodes_of_component) or all(elem in nodes_of_component for elem in inv)
+                                                #     if (set(nodes_of_component).issubset(set(inv))):
+                                                #         result = True
+                                                #         break
+                                                #     if (set(inv).issubset(set(nodes_of_component))):
+                                                #         inv_to_remove = inv
+                                                #         break
+                                                #
+                                                # if len(inv_to_remove)>0:
+                                                #     self.t_invariants.remove(inv_to_remove)
+                                                # if not result:
+                                                    self.t_invariants.add(tuple(sorted_nodes_of_comp)) #TODO: добавить сортировку тьюпла
                                             A.update(nodes_of_component)
                                     ecyc_without_t_inv_nodes = clear(set(ecyc), A)
                                     trace_to_events_names_list = replace(trace_to_events_names_list, ecyc,
