@@ -18,11 +18,11 @@ t_inv = sympy.Matrix(incidence_matrix.a_matrix).nullspace()
 t_inv = np.array(t_inv).astype(np.float64)
 invariants_names = []
 for inv in t_inv:
-    if(np.all(inv >= 0)):
+    if np.all(inv >= 0):
         invariant_names = []
         t_index = 0
         for t in inv:
-            if(t == 1):
+            if t == 1:
                 invariant_names.append(list(incidence_matrix.transitions.keys())[list(incidence_matrix.transitions.values()).index(t_index)].label)
             t_index += 1
         invariants_names.append(invariant_names)

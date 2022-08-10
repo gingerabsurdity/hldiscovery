@@ -44,6 +44,9 @@ def main():
 
             fixed_invariants = t_inv.t_invariants
 
+            print("low-level invariants:")
+            print(fixed_invariants)
+
             #TODO: разобраться почему нужен был этот кусок
 
             # for inv in t_inv.t_invariants:
@@ -67,6 +70,11 @@ def main():
             # каждому циклу поставить в соответствие индекс
             possible_cycles_bodies, log_without_cycles_bodies = preprocessing.change_cycles_bodies_to_special_sym(log, fixed_invariants, 'cycle')
 
+            print("possible cycles bodies:")
+            print(possible_cycles_bodies)
+            print("log without cycles bodies:")
+            print(log_without_cycles_bodies)
+
             #mapping
             file_path = os.path.join(os.path.dirname(__file__), 'mapping.json')
             mapping = preprocessing.hierarchical_events_mapping(file_path)
@@ -77,10 +85,14 @@ def main():
             for trace in log_without_cycles_bodies:
                 abstract_traces.extend(preprocessing.detailed_events_to_abstract(trace, mapping))
 
+            print("abstract traces:")
+            print(abstract_traces)
+
             abstract_cycle_bodies = {}
             for cycle_body in possible_cycles_bodies.keys():
                 abstract_cycle_bodies[cycle_body] = preprocessing.detailed_events_to_abstract(possible_cycles_bodies.get(cycle_body), mapping)
-
+            print("abstract possible invariants:")
+            print(abstract_cycle_bodies.values())
             abstract_traces_with_hl_cycles_bodies = []
             trace_index = 0
             # для каждой трассы в abstract_traces заменяем все циклы на их высокоуровневое представление
@@ -163,7 +175,21 @@ def main():
             t_inv = sympy.Matrix(incidence_matrix.a_matrix).nullspace()
             t_inv = np.array(t_inv).astype(np.float64)
 
-            print(t_inv)
+            invariants_names = []
+            for inv in t_inv:
+                if np.all(inv >= 0):
+                    invariant_names = []
+                    t_index = 0
+                    for t in inv:
+                        if t == 1:
+                            invariant_names.append(list(incidence_matrix.transitions.keys())[
+                                                       list(incidence_matrix.transitions.values()).index(
+                                                           t_index)].label)
+                        t_index += 1
+                    invariants_names.append(invariant_names)
+
+            print("invariants from net:")
+            print(invariants_names)
 
             replayed_traces = token_replay.apply(final_log, hl_net, hl_i_m, hl_f_m)
 
