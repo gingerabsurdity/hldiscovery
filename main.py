@@ -33,6 +33,10 @@ def main():
 
             log = pm4py.read.read_xes(file_path)
 
+            for trace in log:
+                trace_to_events_names_list = [event['concept:name'] for event in trace]
+                print(trace_to_events_names_list)
+
             start_time = datetime.now()
 
 
@@ -43,6 +47,7 @@ def main():
             t_inv.fill_t_inv() #1.1
 
             fixed_invariants = t_inv.t_invariants
+            fixed_invariants = sorted(fixed_invariants)
 
             print("low-level invariants:")
             print(fixed_invariants)

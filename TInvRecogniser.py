@@ -101,7 +101,7 @@ class TInvRecogniser(object):
                                                 if len(inv_to_remove)>0:
                                                     self.t_invariants.remove(inv_to_remove)
                                                 if not result:
-                                                    self.t_invariants.add(tuple(sorted_nodes_of_comp)) #TODO: добавить сортировку тьюпла
+                                                    self.t_invariants.add(tuple(sorted_nodes_of_comp))
                                             A.update(nodes_of_component)
                                     ecyc_without_t_inv_nodes = clear(set(ecyc), A)
                                     trace_to_events_names_list = replace(trace_to_events_names_list, ecyc,

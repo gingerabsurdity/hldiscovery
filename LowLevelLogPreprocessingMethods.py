@@ -53,29 +53,6 @@ def detailed_events_to_abstract(trace, mapping):
         abstract_traces_set_to_lists.append(list(a_trace))
     return abstract_traces_set_to_lists
 
-# def cycle_body_to_abstract(cycle, mapping):
-#     abstract_trace = []
-#     for detailed_event in trace:
-#         keys = [key for key in mapping.keys() if detailed_event in mapping[key]]
-#         if len(keys) > 0:
-#             abstract_event = keys[0]
-#         else:
-#             abstract_trace.append(detailed_event)
-#         abstract_trace.append(abstract_event)  # create abstract trace with duplicates
-#     i = 0
-#     abstract_trace = remove_stuttering(abstract_trace)
-#     abstract_traces = [abstract_trace]
-#     for event in set(abstract_trace):
-#         if abstract_trace.count(event) > 1:
-#             for trace in abstract_traces:
-#                 traces_with_event = generate_traces_by_duplicated_events(trace, event)
-#                 for draft_trace in traces_with_event:
-#                     draft_trace = remove_stuttering(draft_trace)
-#                 abstract_traces.remove(trace)
-#                 abstract_traces.extend(traces_with_event)
-#     return abstract_traces
-
-
 def remove_stuttering(trace):
     i = 0
     while i < len(trace) - 1:
@@ -126,11 +103,9 @@ def find_set_of_cycles_bodies(log, t_invariants):
             if set(cycle) == presented_elements:
                 cycles_bodies.add(tuple(cycle_body))
     i = 0
-    for cycle_body in cycles_bodies:
+    for cycle_body in sorted(cycles_bodies):
         cycles_bodies_dict[i] = cycle_body
         i += 1
-    #print("possible cycle bodies:")
-    #print(cycles_bodies_dict)
     return cycles_bodies_dict
 
 
