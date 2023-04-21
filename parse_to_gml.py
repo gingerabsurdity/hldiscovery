@@ -37,10 +37,14 @@ def generate_gml(net):
         """
     for trans in net.transitions:
         name = trans.name
+        if trans.label is None:
+            label = trans.name
+        else:
+            label = trans.label
         yield f"""
-        node [
-            id {id_of(name)}
-            label "{name}"
+                node [
+                    id {id_of(name)}
+                    label "{label}"
             graphics [
                 fill "#cc8888"
                 type "rectangle"
