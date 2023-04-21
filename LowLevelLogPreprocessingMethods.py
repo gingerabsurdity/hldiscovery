@@ -19,9 +19,10 @@ def detailed_events_to_abstract(trace, mapping):
         keys = [key for key in mapping.keys() if detailed_event_string in mapping[key]]
         if len(keys) > 0:
             abstract_event = keys[0]
+            abstract_trace.append(abstract_event)  # create abstract trace with duplicates
         else:
             abstract_trace.append(detailed_event_string)
-        abstract_trace.append(abstract_event)  # create abstract trace with duplicates
+
     i = 0
     abstract_trace = remove_stuttering(abstract_trace)
     abstract_traces = [abstract_trace]

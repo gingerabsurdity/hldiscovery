@@ -11,65 +11,50 @@ import numpy as np
 from pm4py.objects.petri_net.utils.incidence_matrix import IncidenceMatrix
 from pm4py.objects.petri_net.importer import importer as petri_importer
 import sympy
+import copy
+import csv
 
 import LowLevelLogPreprocessingMethods as preprocessing
 
+import sys
+
+
 
 def main():
-
-        arr = os.listdir(os.path.dirname(__file__) + "/tests/initial_logs")
-        arr.sort()
+        orig_stdout = sys.stdout
+        f = open('out.txt', 'w')
+        sys.stdout = f
+        csvf = open(os.path.dirname(__file__) + '/tests/final.csv', 'w')
+        writer = csv.writer(csvf)
+        #arr = os.listdir(os.path.dirname(__file__) + "/tests/initial_logs")
+        #arr.sort()
         ln = 0
 
-        arr2 = arr[:3]
-
-        hl_net, hl_i_m, hl_f_m = petri_importer.apply(os.path.join(os.path.join(os.path.dirname(__file__), "highlevelnet.pnml")))
+        #arr2 = arr[1:]
+        arr2 = []
+        arr2.append("TKDE_Benchmark/BPIC17_f.xes")
         fitnesses = []
         for path in arr2:
 
-            file_path = os.path.join(os.path.join(os.path.dirname(__file__), "tests/initial_logs"), path)
+            row = []
+
+            file_path = os.path.join(os.path.dirname(__file__), path)
             print("start: log number " + str(ln))
             print(file_path)
+            row.append(file_path)
 
-            log = pm4py.read.read_xes(file_path)
+            initial_log = pm4py.read.read_xes(file_path)
+            log = copy.deepcopy(initial_log)
 
             for trace in log:
                 trace_to_events_names_list = [event['concept:name'] for event in trace]
                 print(trace_to_events_names_list)
-
-            start_time = datetime.now()
-
-
-            #print("mining time for initial log:")
-            #print(datetime.now() - start_time)
 
             t_inv = TInvRecogniser(log)
             t_inv.fill_t_inv() #1.1
 
             fixed_invariants = t_inv.t_invariants
             fixed_invariants = sorted(fixed_invariants)
-
-            print("low-level invariants:")
-            print(fixed_invariants)
-
-            #TODO: разобраться почему нужен был этот кусок
-
-            # for inv in t_inv.t_invariants:
-            #     if 't4' in inv and 't11' in inv:
-            #         new_inv = list(inv)
-            #         new_inv.remove('t4')
-            #         new_inv.append('t10')
-            #         if(inv in fixed_invariants):
-            #             fixed_invariants.remove(inv)
-            #             fixed_invariants.add(tuple(new_inv))
-            #     if 't6' in inv and 't10' in inv:
-            #         new_inv = list(inv)
-            #         new_inv.remove('t10')
-            #         new_inv.append('t4')
-            #         new_inv.append('t5')
-            #         if (inv in fixed_invariants):
-            #             fixed_invariants.remove(inv)
-            #             fixed_invariants.add(tuple(new_inv))
 
             #1.2 find in log all possible cycle bodies to get a set of tuples
             # каждому циклу поставить в соответствие индекс
@@ -81,8 +66,21 @@ def main():
             print(log_without_cycles_bodies)
 
             #mapping
-            file_path = os.path.join(os.path.dirname(__file__), 'mapping.json')
-            mapping = preprocessing.hierarchical_events_mapping(file_path)
+            #file_path = os.path.join(os.path.dirname(__file__), 'mapping.json')
+            #mapping = preprocessing.hierarchical_events_mapping(file_path)
+            mapping = dict()
+
+            for trace in initial_log:
+                for event in trace:
+                    concept_name = event['concept:name']
+                    if concept_name.count("_")>1:
+                        group = '' + concept_name.split("_")[0] + concept_name.split("_")[1]
+                    else:
+                        group = concept_name
+                    if group not in mapping:
+                        mapping[group] = set()
+
+                    mapping[group].add(event['concept:name'])
 
             #transform log into hl, cycles remain as same symbols
 
@@ -90,8 +88,8 @@ def main():
             for trace in log_without_cycles_bodies:
                 abstract_traces.extend(preprocessing.detailed_events_to_abstract(trace, mapping))
 
-            print("abstract traces:")
-            print(abstract_traces)
+            #print("abstract traces:")
+            #print(abstract_traces)
 
             abstract_cycle_bodies = {}
             for cycle_body in possible_cycles_bodies.keys():
@@ -111,12 +109,12 @@ def main():
                         if event == 'cycle' + str(i):
                            has_cycle = True
                            for body in abstract_cycle_bodies[i]:
-                               for event_hl in set(body):
-                                   if new_trace.__contains__(event_hl):
-                                       if new_trace.index(event_hl) < j:
-                                           body.remove(event_hl)
-                                       else:
-                                           new_trace.remove(event_hl)
+                               #?for event_hl in set(body):
+                               #?    if new_trace.__contains__(event_hl):
+                               #?        if new_trace.index(event_hl) < j:
+                               #?            body.remove(event_hl)
+                               #?        else:
+                               #?            new_trace.remove(event_hl)
                                abstract_trace_with_hl_cycle_body = list(new_trace[0:j]) + body + list(new_trace[j + 1:len(new_trace)])
                                abstract_traces_with_hl_cycles_bodies.append(abstract_trace_with_hl_cycle_body)
                                # generated = False
@@ -155,6 +153,7 @@ def main():
                     trace_index_for_deleting += 1
             #print(abstract_traces_with_hl_cycles_bodies)
             #print(type(abstract_traces[1][1]))
+            print(abstract_traces_with_hl_cycles_bodies)
 
             final_log = EventLog()
             for trace in abstract_traces_with_hl_cycles_bodies:
@@ -164,15 +163,17 @@ def main():
                     e["concept:name"] = event
                     t.append(e)
                 final_log.append(t)
-            final_log_file_name = 'final_log' + str(ln) + '.xes'
+            final_log_file_name = '2912BPIC17_final_log.xes'
             file_path_out = os.path.join(os.path.dirname(__file__), final_log_file_name)
             xes_exporter.apply(final_log, file_path_out)
 
-            net, initial_marking, final_marking = inductive_miner.apply(final_log)
-            net_file_name = 'final_net_ind' + str(ln) + '.pnml'
+            net, hlinitial_marking, hlfinal_marking = inductive_miner.apply(final_log)
+            net_file_name = '2912BPIC17_final_net_ind' + str(ln) + '.pnml'
             net_path_out = os.path.join(os.path.dirname(__file__), net_file_name)
             ln += 1
-            pn_exporter.exporter.apply(net, initial_marking, net_path_out)
+            pn_exporter.exporter.apply(net, hlinitial_marking, net_path_out)
+            row.append(len(net.transitions))
+            row.append(len(net.places))
 
             incidence_matrix = IncidenceMatrix(net)
 
@@ -193,10 +194,71 @@ def main():
                         t_index += 1
                     invariants_names.append(invariant_names)
 
-            print("invariants from net:")
-            print(invariants_names)
+            #print("invariants from net:")
+            #print(invariants_names)
 
-            replayed_traces = token_replay.apply(final_log, hl_net, hl_i_m, hl_f_m)
+            final_detailed_log = EventLog()
+            for trace in initial_log:
+                new_detailed_trace = Trace()
+                trace_events_bool = dict()
+                i = 0
+                for event in trace:
+                    if event["concept:name"] in trace_events_bool:
+                        trace_events_bool[event["concept:name"]]['positions'].append(i)
+                    else:
+                        event_ordbool = dict()
+                        event_ordbool['event'] = event
+                        event_ordbool['positions'] = [i]
+                        event_ordbool['processed'] = False
+                        trace_events_bool[event["concept:name"]] = event_ordbool
+                    i+=1
+
+
+                for event in trace:
+                    # идем по детальной трассе, для каждого события находим соответствующее ему абстрактное
+                    # и забираем из детального все которые ему принадлежат
+                    # если их еще не было в рамках этого абстрактного события, то записываем в лог
+                    # значит надо хранить какие события мы в рамках этого события обработали в одном массиве, и не забывать убирать их из лога
+                    # чтобы потом обрабатываеть только еще не обработанные
+                    # на построенном логе сделать прогон реплая на низкоуровневой модели
+
+
+
+                    detailed_event = event
+                    abstract_event = None
+                    keys = [key for key in mapping.keys() if detailed_event["concept:name"] in mapping[key]]
+                    if len(keys) > 0:
+                        abstract_event = keys[0]
+                    if abstract_event is not None:
+                        #здесь выписываем все события которые есть в логе и в mapping[abstract_event]
+                        #удаляя их из исходного лога или помечая как взятые в отдельном массиве, например
+
+                        for corresponding_detailed_event in mapping[abstract_event]:
+                            if corresponding_detailed_event in trace_events_bool and trace_events_bool[corresponding_detailed_event]['positions']:
+                                trace_events_bool[corresponding_detailed_event]['positions'].pop(0)
+                                e = Event()
+                                e["concept:name"] = corresponding_detailed_event
+                                new_detailed_trace.append(e)
+                    else:
+                        new_detailed_trace.append(detailed_event)
+
+                final_detailed_log.append(new_detailed_trace)
+
+            detailed_net, initial_marking, final_marking = inductive_miner.apply(initial_log)
+            row.append(len(detailed_net.transitions))
+            row.append(len(detailed_net.places))
+            replayed_traces = token_replay.apply(final_log, net, hlinitial_marking, hlfinal_marking)
+            #replayed_traces = token_replay.apply(final_detailed_log, detailed_net, initial_marking, final_marking)
+            #replayed_traces = token_replay.apply(initial_log, detailed_net, initial_marking, final_marking)
+
+            net_file_name = '2912BPIC17_final_low-level_net_ind' + str(ln) + '.pnml'
+            net_path_out = os.path.join(os.path.dirname(__file__), net_file_name)
+            ln += 1
+            #pn_exporter.exporter.apply(detailed_net, initial_marking, net_path_out)
+
+            final_log_file_name = '2912BPIC17_final_low_level_log' + str(ln) + '.xes'
+            file_path_out = os.path.join(os.path.dirname(__file__), final_log_file_name)
+            xes_exporter.apply(final_detailed_log, file_path_out)
 
             r = 0
             p = 0
@@ -217,15 +279,24 @@ def main():
             fitness = 0.5 * (1 - r / p) + 0.5 * (1 - m / c)
             #print("fitness of final log with initial model: ")
             print(fitness)
+            row.append(len(final_log))
+            row.append(fitness)
             fitnesses.append(fitness)
-            #print("for " + str(len(final_log)) + " traces total")
-            #print("end: log number" + str(ln-1))
+
+            precision = pm4py.algo.evaluation.precision.variants.align_etconformance.apply(final_log, net,hlinitial_marking, hlfinal_marking)
+            row.append(precision)
+            print(precision)
+            writer.writerow(row)
 
         sum = 0
         for fit in fitnesses:
             print(fit)
             sum +=fit
         print("total average: " + str(sum/len(fitnesses)))
+
+        sys.stdout = orig_stdout
+        f.close()
+        csvf.close()
 
 
 if __name__ == '__main__':
