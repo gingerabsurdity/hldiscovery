@@ -2,7 +2,6 @@ import pm4py
 from pm4py.objects.log.obj import EventLog, Trace, Event
 from TInvRecogniser import TInvRecogniser
 from pm4py.objects.log.exporter.xes import exporter as xes_exporter
-from datetime import datetime
 from pm4py.algo.conformance.tokenreplay import algorithm as token_replay
 from pm4py.algo.discovery.inductive import algorithm as inductive_miner
 import pm4py.objects.petri_net.exporter as pn_exporter
@@ -13,11 +12,11 @@ from pm4py.objects.petri_net.importer import importer as petri_importer
 import sympy
 import copy
 import csv
+from pm4py.objects.conversion.log import converter as log_converter
 
 import LowLevelLogPreprocessingMethods as preprocessing
 
 import sys
-
 
 
 def main():
@@ -26,25 +25,27 @@ def main():
         sys.stdout = f
         csvf = open(os.path.dirname(__file__) + '/tests/final.csv', 'w')
         writer = csv.writer(csvf)
-        #arr = os.listdir(os.path.dirname(__file__) + "/tests/initial_logs")
+        arr = os.listdir(os.path.dirname(__file__) + "/tests/evg_logs")
         #arr.sort()
+
         ln = 0
 
         #arr2 = arr[1:]
         arr2 = []
-        arr2.append("TKDE_Benchmark/BPIC17_f.xes")
+        arr2.append(arr[1])
         fitnesses = []
         for path in arr2:
 
             row = []
 
-            file_path = os.path.join(os.path.dirname(__file__), path)
+            file_path = os.path.join(os.path.dirname(__file__) + "\\tests\\evg_logs", path)
             print("start: log number " + str(ln))
             print(file_path)
             row.append(file_path)
 
             initial_log = pm4py.read.read_xes(file_path)
             log = copy.deepcopy(initial_log)
+            log = log_converter.apply(log, variant=log_converter.Variants.TO_EVENT_LOG)
 
             for trace in log:
                 trace_to_events_names_list = [event['concept:name'] for event in trace]
@@ -66,30 +67,16 @@ def main():
             print(log_without_cycles_bodies)
 
             #mapping
-            #file_path = os.path.join(os.path.dirname(__file__), 'mapping.json')
-            #mapping = preprocessing.hierarchical_events_mapping(file_path)
-            mapping = dict()
+            file_path = os.path.join(os.path.dirname(__file__), 'tests//evg_logs//activities.txt')
+            mapping = preprocessing.mapping_from_txt_with_separators(file_path, "::")
 
-            for trace in initial_log:
-                for event in trace:
-                    concept_name = event['concept:name']
-                    if concept_name.count("_")>1:
-                        group = '' + concept_name.split("_")[0] + concept_name.split("_")[1]
-                    else:
-                        group = concept_name
-                    if group not in mapping:
-                        mapping[group] = set()
-
-                    mapping[group].add(event['concept:name'])
+            print(mapping)
 
             #transform log into hl, cycles remain as same symbols
 
             abstract_traces = []
             for trace in log_without_cycles_bodies:
                 abstract_traces.extend(preprocessing.detailed_events_to_abstract(trace, mapping))
-
-            #print("abstract traces:")
-            #print(abstract_traces)
 
             abstract_cycle_bodies = {}
             for cycle_body in possible_cycles_bodies.keys():
@@ -248,8 +235,6 @@ def main():
             row.append(len(detailed_net.transitions))
             row.append(len(detailed_net.places))
             replayed_traces = token_replay.apply(final_log, net, hlinitial_marking, hlfinal_marking)
-            #replayed_traces = token_replay.apply(final_detailed_log, detailed_net, initial_marking, final_marking)
-            #replayed_traces = token_replay.apply(initial_log, detailed_net, initial_marking, final_marking)
 
             net_file_name = '2912BPIC17_final_low-level_net_ind' + str(ln) + '.pnml'
             net_path_out = os.path.join(os.path.dirname(__file__), net_file_name)

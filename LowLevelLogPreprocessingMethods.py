@@ -1,12 +1,46 @@
 import json
 
 
-def hierarchical_events_mapping(json_file_name):
+def mapping_from_json_file(json_file_name):
     mapping = {}
     with open(json_file_name) as json_file:
         mapping = json.load(json_file)
     return mapping
 
+
+def mapping_from_txt_with_separators(file_path, separator):
+    f = open(file_path, "r")
+    mapping = {}
+
+    for x in f:
+        hl_event_to_ll_event = x.strip().split(separator)
+        current_key_number = len(mapping.keys())
+        if len(hl_event_to_ll_event) < 2:
+            mapping[current_key_number] = []
+            mapping[current_key_number].append(hl_event_to_ll_event[0])
+        else:
+            mapping[current_key_number] = hl_event_to_ll_event
+
+    return mapping
+def mapping_from_log(initial_log):
+    mapping = dict()
+
+    for trace in initial_log:
+        for event in trace:
+            concept_name = event['concept:name']
+            if concept_name.count("_") > 1:
+                group = '' + concept_name.split("_")[0] + concept_name.split("_")[1]
+            else:
+                group = concept_name
+            if group not in mapping:
+                mapping[group] = set()
+
+            mapping[group].add(event['concept:name'])
+    return mapping
+
+def add_other_events_to_mapping(log, mapping):
+
+    return mapping
 
 def detailed_events_to_abstract(trace, mapping):
     abstract_trace = []
