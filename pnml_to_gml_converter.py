@@ -69,15 +69,9 @@ if __name__ == '__main__':
     from tqdm import tqdm
     from pm4py.objects.petri_net.importer import importer as petri_importer
 
-    path = "2912BPIC15_final_net_ind0.pnml"
-    path2 = "2912BPIC15_final_net_ind0.gml"
-    file_path = os.path.join(os.path.dirname(__file__), path)
-    file_path2 = os.path.join(os.path.dirname(__file__), path2)
+    arr = os.listdir(os.path.dirname(__file__) + "\\tests\\evg_logs")
+    arr.sort()
 
-    #arr = os.listdir(os.path.dirname(__file__) + "/tests/final_nets_291222")
-    #arr.sort()
-    arr = []
-    arr.append(file_path)
     ln = 0
 
     for file in arr:
@@ -86,7 +80,7 @@ if __name__ == '__main__':
         f_to = file + '.gml'
 
         print(f"Reading {f_from}...")
-        net, hl_i_m, hl_f_m = petri_importer.apply(os.path.join(os.path.join(os.path.dirname(__file__) + "/tests/final_nets_291222", f_from)))
+        net, hl_i_m, hl_f_m = petri_importer.apply(os.path.join(os.path.join(os.path.dirname(__file__) + "\\tests\\evg_logs", f_from)))
 
         with open(f_to, mode="w") as f:
             for part in tqdm(generate_gml(net), desc="Writing GML"):

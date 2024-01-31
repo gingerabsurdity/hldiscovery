@@ -55,9 +55,9 @@ class TInvRecogniser(object):
             """
         A = set()
         dfg = dfg_discovery.apply(self.log)  # строим Directly follows graph для всего лога, чтобы найти отношения
-        self.causal_relations = {k: v for k, v in
-                                 causal_algorithm.apply(dfg, variant=CAUSAL_HEURISTIC).items() if
-                                 v > 0}.keys()
+        self.causal_relations = set({k: v for k, v in
+                                 causal_algorithm.apply(dfg, variant=CAUSAL_ALPHA).items() if
+                                 v > 0}.keys())
         self.parallel_relations = {(f, t) for (f, t) in dfg if (t, f) in dfg}
 
         for trace in self.log:  # в оригинале был прогресс от лога отдельной переменной, а лог глобальной, в процедуре
@@ -82,7 +82,7 @@ class TInvRecogniser(object):
                                     causality_graph = self.build_causality_graph(ecyc)
                                     strongly_connected_components_of_eCyc = nx.strongly_connected_components(
                                         causality_graph)  # page 4 of tapia thesis, line 80 in prom TinvOperations
-                                    nodes_of_component: list
+                                    #nodes_of_component: list
                                     for nodes_of_component in strongly_connected_components_of_eCyc:  # line 85
                                         if len(nodes_of_component) > 1:  # 87 |V_i|>1
                                             sorted_nodes_of_comp = sorted(nodes_of_component)
