@@ -129,8 +129,7 @@ def detailed_events_to_abstract(trace, mapping, activity_tag = ""):
             detailed_event_string = detailed_event
         keys = [key for key in mapping.keys() if detailed_event_string in mapping[key]]
         if len(keys) > 0:
-            if detailed_event[activity_tag] in keys:
-                abstract_event = detailed_event[activity_tag]
+            abstract_event = keys[0]
             abstract_trace.append(abstract_event)  # create abstract trace with duplicates
         else:
             abstract_trace.append(detailed_event_string)

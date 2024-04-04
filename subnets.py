@@ -74,9 +74,9 @@ def subnets_writers(dict_event_to_log):
         final_log_file_name = str(event) + '_final_log.xes'
         file_path_out = os.path.join(os.path.dirname(__file__), final_log_file_name)
         xes_exporter.apply(log_for_event, file_path_out)
-        # process_tree = inductive_miner.apply(log_for_event)
-        net, initial_marking, final_marking = heuristic_miner.apply(
-            log_for_event)  # pm4py.convert_to_petri_net(process_tree)
+        process_tree = inductive_miner.apply(log_for_event)
+        #net, initial_marking, final_marking = heuristic_miner.apply(log_for_event)
+        net, initial_marking, final_marking = pm4py.convert_to_petri_net(process_tree)
         net_file_name = str(event) + '_contest_net_heu.pnml'
         net_path_out = os.path.join(os.path.dirname(__file__), net_file_name)
         pn_exporter.exporter.apply(net, initial_marking, net_path_out)
