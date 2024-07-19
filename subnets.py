@@ -70,17 +70,18 @@ def generate_nets_by_mapping_and_activities_dict(log, mapping, dict_for_events):
 
 def subnets_writers(dict_event_to_log):
     for event in dict_event_to_log.keys():
-        log_for_event = list_of_string_to_event_log(dict_event_to_log[event])
-        final_log_file_name = str(event) + '_final_log.xes'
-        file_path_out = os.path.join(os.path.dirname(__file__), final_log_file_name)
-        xes_exporter.apply(log_for_event, file_path_out)
-        process_tree = inductive_miner.apply(log_for_event)
-        #net, initial_marking, final_marking = heuristic_miner.apply(log_for_event)
-        net, initial_marking, final_marking = pm4py.convert_to_petri_net(process_tree)
-        net_file_name = str(event) + '_contest_net_heu.pnml'
-        net_path_out = os.path.join(os.path.dirname(__file__), net_file_name)
-        pn_exporter.exporter.apply(net, initial_marking, net_path_out)
-        pnml_to_gml_converter.generate_gml(net)
+        if(not ('cycle' in str(event))):
+            log_for_event = list_of_string_to_event_log(dict_event_to_log[event])
+            final_log_file_name = str(event) + '_final_log.xes'
+            file_path_out = os.path.join(os.path.dirname(__file__), final_log_file_name)
+            xes_exporter.apply(log_for_event, file_path_out)
+            process_tree = inductive_miner.apply(log_for_event)
+            #net, initial_marking, final_marking = heuristic_miner.apply(log_for_event)
+            net, initial_marking, final_marking = pm4py.convert_to_petri_net(process_tree)
+            net_file_name = str(event) + '_contest_net_heu.pnml'
+            net_path_out = os.path.join(os.path.dirname(__file__), net_file_name)
+            pn_exporter.exporter.apply(net, initial_marking, net_path_out)
+            pnml_to_gml_converter.generate_gml(net)
 
 
 def read_activities_info(file_name):

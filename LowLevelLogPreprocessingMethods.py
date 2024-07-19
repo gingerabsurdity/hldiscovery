@@ -33,19 +33,21 @@ def mapping_from_txt_with_separators(file_path, separator_for_events, separator_
     return mapping
 
 
-def mapping_from_log_by_separator(initial_log, separator=""):
+def mapping_from_log_by_separator(initial_log, cycle_prefix="cycle", separator=""):
     mapping = dict()
 
     for trace in initial_log:
         for event in trace:
             concept_name = event['concept:name']
-            if concept_name.count(separator) > 0:
-                group = '' + concept_name.split(separator)[0]
-            else:
-                group = concept_name
-            if group not in mapping:
-                mapping[group] = set()
-            mapping[group].add(event['concept:name'])
+            if not (cycle_prefix  in concept_name):
+                if concept_name.count(separator) > 0:
+                    group = '' + concept_name.split(separator)[0] + concept_name.split(separator)[1]
+                else:
+
+                    group = concept_name
+                if group not in mapping:
+                    mapping[group] = set()
+                mapping[group].add(event['concept:name'])
     return mapping
 
 

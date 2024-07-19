@@ -69,10 +69,10 @@ def main():
 
         # mapping
         print(__file__)
-        file_path = os.path.join(os.path.dirname(__file__), 'tests//evg_logs//activities.txt')
+        #file_path = os.path.join(os.path.dirname(__file__), 'tests//evg_logs//activities.txt')
         print(file_path)
-        mapping = preprocessing.mapping_from_log(log, "hierarchy_level")
-        # mapping = preprocessing.mapping_from_log(log, " ")
+        mapping = preprocessing.mapping_from_log(log, "hierarchy_level") #evg
+        #mapping = preprocessing.mapping_from_log_by_separator(log, "cycle", "_")
 
         print(mapping)
 
@@ -80,15 +80,15 @@ def main():
         # dict_for_events = subnets.read_activities_info(file_path)
 
         # формирование массива подсетей
-        dict_event_to_log = subnets.generate_nets_by_mapping(log, mapping, "activity")
+        # dict_event_to_log = subnets.generate_nets_by_mapping(log, mapping, "")
 
         # вывод подсетей
-        subnets.subnets_writers(dict_event_to_log)
+       # subnets.subnets_writers(dict_event_to_log)
 
         abstract_traces = []
         trace_number = 0
         for trace in log_without_cycles_bodies:
-            abstract_traces.extend(preprocessing.detailed_events_to_abstract(trace, mapping, "activity"))
+            abstract_traces.extend(preprocessing.detailed_events_to_abstract(trace, mapping, "concept:name"))
             trace_number += 1
 
         abstract_cycle_bodies = {}
@@ -163,14 +163,14 @@ def main():
                 e["concept:name"] = event
                 t.append(e)
             final_log.append(t)
-        final_log_file_name = 'final_log.xes'
+        final_log_file_name = 'final_log_2017.xes'
         file_path_out = os.path.join(os.path.dirname(__file__), final_log_file_name)
         xes_exporter.apply(final_log, file_path_out)
 
-        # process_tree = heuristic_miner.apply(final_log)
-        # net, initial_marking, final_marking = pm4py.convert_to_petri_net(process_tree)
-        net, initial_marking, final_marking = heuristic_miner.apply(final_log)
-        net_file_name = 'contest_final_net_heu' + str(ln) + '.pnml'
+        process_tree = inductive_miner.apply(final_log)
+        net, initial_marking, final_marking = pm4py.convert_to_petri_net(process_tree)
+        #net, initial_marking, final_marking = heuristic_miner.apply(final_log)
+        net_file_name = '2017_ind' + str(ln) + '.pnml'
         net_path_out = os.path.join(os.path.dirname(__file__), net_file_name)
         ln += 1
         pn_exporter.exporter.apply(net, initial_marking, net_path_out)
