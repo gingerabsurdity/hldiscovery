@@ -37,10 +37,49 @@ def generate_nets_by_mapping(log, mapping, activity_tag=""):
                             trace_for_event.append(detailed_event_string)
                     else:
                         trace_for_event.append(detailed_event_string)
+                else:
+                    trace_for_event.append(dfs(mapping, event, detailed_event_string, {}))
             if len(trace_for_event) > 0:
                 logs_mapping[event].append(trace_for_event)
     return logs_mapping
 
+def generate_nets_by_detailed_events_mapping(log, mapping, mapping_for_detailed_events):
+    logs_mapping = dict()
+    for event in mapping.keys():
+        logs_mapping[event] = []
+        for trace in log:
+            trace_for_event = []
+            for detailed_event in trace:
+                if not isinstance(detailed_event, str):
+                    detailed_event_string = detailed_event["concept:name"]
+                else:
+                    detailed_event_string = detailed_event
+                if event in mapping_for_detailed_events[detailed_event_string].values():
+                    level = list(mapping_for_detailed_events[detailed_event_string].keys())[list(mapping_for_detailed_events[detailed_event_string].values()).index(event)]
+                    if level + 1 == len(mapping_for_detailed_events[detailed_event_string].keys()):
+                        trace_for_event.append(detailed_event_string)
+                    else:
+                        trace_for_event.append(mapping_for_detailed_events[detailed_event_string][level + 1])
+            if len(trace_for_event) > 0:
+                logs_mapping[event].append(trace_for_event)
+    return logs_mapping
+
+
+def dfs(G, v, desired, discovered):
+    """find the next level nested event to create the abstract net
+    args:
+    G - dictionary for every abstract event with every nested lower-level event
+    v - the desired event name
+
+    return:
+    the parent for desired event
+    """
+    discovered[v] = True
+    for w in G[v]:
+        if w == desired:
+            return v
+        if w not in discovered:
+            dfs(G, w, desired, discovered)
 
 def generate_nets_by_mapping_and_activities_dict(log, mapping, dict_for_events):
     logs_mapping = dict()
@@ -75,10 +114,10 @@ def subnets_writers(dict_event_to_log):
             final_log_file_name = str(event) + '_final_log.xes'
             file_path_out = os.path.join(os.path.dirname(__file__), final_log_file_name)
             xes_exporter.apply(log_for_event, file_path_out)
-            process_tree = inductive_miner.apply(log_for_event)
-            #net, initial_marking, final_marking = heuristic_miner.apply(log_for_event)
-            net, initial_marking, final_marking = pm4py.convert_to_petri_net(process_tree)
-            net_file_name = str(event) + '_contest_net_heu.pnml'
+            #process_tree = inductive_miner.apply(log_for_event)
+            net, initial_marking, final_marking = heuristic_miner.apply(log_for_event)
+            #net, initial_marking, final_marking = pm4py.convert_to_petri_net(process_tree)
+            net_file_name = str(event) + 'log_sample_heu.pnml'
             net_path_out = os.path.join(os.path.dirname(__file__), net_file_name)
             pn_exporter.exporter.apply(net, initial_marking, net_path_out)
             pnml_to_gml_converter.generate_gml(net)

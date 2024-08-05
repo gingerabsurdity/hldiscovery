@@ -91,6 +91,22 @@ def mapping_from_log_multilevel(initial_log, activity_tag_prefix, many_levels = 
 
     return mapping
 
+def mapping_from_log_multilevel_for_detailed_events(initial_log, activity_tag_prefix): #hierarchy levels in file should be from the most abstract to almost the most detailed
+    mapping = dict()
+    separator = '_'
+
+    for trace in initial_log:
+        for event in trace:
+            concept_name = event['concept:name']
+
+            groups = {int(key.replace(activity_tag_prefix + separator, '')): val for key, val in event.items()
+                      if key.startswith(activity_tag_prefix)}
+
+            mapping.update({concept_name: groups})
+
+    return mapping
+
+
 def add_other_events_to_mapping(log, mapping):
     # TODO
     return mapping
