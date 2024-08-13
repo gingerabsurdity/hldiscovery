@@ -6,6 +6,7 @@ from pm4py.algo.discovery.inductive import algorithm as inductive_miner
 import pm4py.objects.petri_net.exporter as pn_exporter
 import pnml_to_gml_converter
 from pm4py.algo.discovery.heuristics import algorithm as heuristic_miner
+import LowLevelLogPreprocessingMethods
 
 
 def list_of_string_to_event_log(list_of_strings):
@@ -18,6 +19,29 @@ def list_of_string_to_event_log(list_of_strings):
             t.append(e)
         final_log.append(t)
     return final_log
+
+def generate_nets_by_log_info(log, mapping, activity_tag=""):
+    logs_mapping = dict()
+    for event in mapping.keys():
+        logs_mapping[event] = []
+        for trace in log:
+            trace_for_event = []
+            for detailed_event in trace:
+                if not isinstance(detailed_event, str):
+                    detailed_event_string = detailed_event["concept:name"]
+                else:
+                    detailed_event_string = detailed_event
+                if detailed_event_string in mapping[event]:
+                    if activity_tag != "":
+                        if detailed_event[activity_tag] == event:
+                            trace_for_event.append(detailed_event_string)
+                    else:
+                        trace_for_event.append(detailed_event_string)
+                else:
+                    trace_for_event.append(dfs(mapping, event, detailed_event_string, {}))
+            if len(trace_for_event) > 0:
+                logs_mapping[event].append(trace_for_event)
+    return logs_mapping
 
 
 def generate_nets_by_mapping(log, mapping, activity_tag=""):
@@ -43,23 +67,60 @@ def generate_nets_by_mapping(log, mapping, activity_tag=""):
                 logs_mapping[event].append(trace_for_event)
     return logs_mapping
 
+def generate_nets_by_activity_set(log, activity_set, activity_tag = "", separator="_", first_level_index = 0):
+    global groups
+    logs_by_activities = dict()
+    for event in activity_set:
+        logs_by_activities[event] = []
+        for trace in log:
+            trace_for_event = []
+            for detailed_event in trace:
+                try:
+                    groups = {int(key.replace(activity_tag + separator, '')): val for key, val in detailed_event.items()
+                              if key.startswith(activity_tag)}
+                except ValueError as ve:
+                    print(ve)
+
+                sorted_groups = dict(sorted(groups.items()))
+                if event.name in sorted_groups.values():
+                    deeper_level = list(sorted_groups.values()).index(event.name) + first_level_index + 1
+                    if deeper_level >= len(sorted_groups):
+                        deeper_level_activity = detailed_event['concept:name']
+                    else:
+                        deeper_level_activity = list(sorted_groups.values())[deeper_level]
+                        #deeper_level_activity = sorted_groups[deeper_level]
+                    trace_for_event.append(deeper_level_activity)
+            if len(trace_for_event) > 0:
+                logs_by_activities[event].append(trace_for_event)
+    return logs_by_activities
+
+
+
 def generate_nets_by_detailed_events_mapping(log, mapping, mapping_for_detailed_events):
     logs_mapping = dict()
     for event in mapping.keys():
         logs_mapping[event] = []
+        if event == 'Activity_2640':
+            print(2640)
         for trace in log:
             trace_for_event = []
             for detailed_event in trace:
+
                 if not isinstance(detailed_event, str):
                     detailed_event_string = detailed_event["concept:name"]
                 else:
                     detailed_event_string = detailed_event
+                if detailed_event_string == 'GC/RestartEEStart':
+                    print('GC/RestartEEStart')
                 if event in mapping_for_detailed_events[detailed_event_string].values():
-                    level = list(mapping_for_detailed_events[detailed_event_string].keys())[list(mapping_for_detailed_events[detailed_event_string].values()).index(event)]
-                    if level + 1 == len(mapping_for_detailed_events[detailed_event_string].keys()):
+                    level = list(mapping_for_detailed_events[detailed_event_string].keys())[list(reversed(list(mapping_for_detailed_events[detailed_event_string].values()))).index(event)] #list(mapping_for_detailed_events[detailed_event_string].keys())[list(reversed(list(mapping_for_detailed_events[detailed_event_string].values()))).index(event)]
+                    if level == max(mapping_for_detailed_events[detailed_event_string].keys()):
                         trace_for_event.append(detailed_event_string)
                     else:
-                        trace_for_event.append(mapping_for_detailed_events[detailed_event_string][level + 1])
+                        try:
+                            trace_for_event.append(mapping_for_detailed_events[detailed_event_string][list(mapping_for_detailed_events[detailed_event_string].values()).index(event) + 1]) #depends on the first index in level mapping : level + 1 if the indexation starts from
+                        except KeyError:
+                            print(mapping_for_detailed_events[detailed_event_string].values())
             if len(trace_for_event) > 0:
                 logs_mapping[event].append(trace_for_event)
     return logs_mapping

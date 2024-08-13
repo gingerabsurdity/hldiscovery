@@ -1,5 +1,23 @@
 import json
 
+class Activity:
+    max_level = 100
+
+    def set_max_level(max):
+        max_level = max
+    def __init__(self, name="", level=-1):
+        self.level = level
+        self.name = name
+
+    def all_activity_for_level(self, level):
+        activities = set()
+        for leaf in self.leafs:
+            if leaf.level == level:
+                activities.add(leaf)
+        return activities
+
+
+
 
 def mapping_from_json_file(json_file_name):
     mapping = {}
@@ -58,7 +76,7 @@ def mapping_from_log(initial_log, activity_tag_prefix):
         for event in trace:
             concept_name = event['concept:name']
 
-            if event[activity_tag_prefix]:
+            if activity_tag_prefix in event:
                 group = event[activity_tag_prefix]
             else:
                 group = concept_name
@@ -67,7 +85,29 @@ def mapping_from_log(initial_log, activity_tag_prefix):
             mapping[group].add(event['concept:name'])
     return mapping
 
-def mapping_from_log_multilevel(initial_log, activity_tag_prefix, many_levels = False): #hierarchy levels in file should be from the most abstract to almost the most detailed
+def activity_set_with_levels_from_log(initial_log, activity_tag_prefix, separator = "_", max_level = 100):
+    activity_set = set()
+    for trace in initial_log:
+        for event in trace:
+            concept_name = event['concept:name']
+            groups = {int(key.replace(activity_tag_prefix + separator, '')): val for key, val in event.items()
+                      if key.startswith(activity_tag_prefix)}
+            for group in groups:
+                current_activity = Activity(level=group, name=groups[group])
+                if current_activity not in activity_set:
+                    activity_set.add(current_activity)
+            activity_set.add(Activity(level=max_level, name=concept_name))
+            #
+            # if activity_tag_prefix in event:
+            #     group = event[activity_tag_prefix]
+            # else:
+            #     group = concept_name
+            # if group not in mapping:
+            #     mapping[group] = set()
+            # mapping[group].add(event['concept:name'])
+    return activity_set
+
+def mapping_from_log_multilevel(initial_log, activity_tag_prefix, many_levels = True): #hierarchy levels in file should be from the most abstract to almost the most detailed
     mapping = dict()
     separator = '_'
 
@@ -80,17 +120,17 @@ def mapping_from_log_multilevel(initial_log, activity_tag_prefix, many_levels = 
                        if key.startswith(activity_tag_prefix)}
 
                 sorted_groups = dict(sorted(groups.items()))
-                sorted_groups.update({len(groups): concept_name})
+                sorted_groups.update({max(groups) + 1 if len(groups) > 0 else 1: concept_name})
 
                 for group in sorted_groups:
-                    if group < len(sorted_groups) - 1:
-                        if groups[group] in mapping:
-                            mapping[sorted_groups[group]].append(sorted_groups[group + 1])
-                        else:
-                            mapping.update({sorted_groups[group] : [sorted_groups[group + 1]]})
-
+                    if sorted_groups[group] != concept_name:
+                        if sorted_groups[group] not in mapping:
+                            mapping.update({sorted_groups[group]: set()})
+                        if list(sorted_groups.keys()).index(group) < len(sorted_groups):
+                            mapping[sorted_groups[group]].add(sorted_groups[list(sorted_groups)[list(sorted_groups.keys()).index(group) + 1]])
     return mapping
 
+#depricated
 def mapping_from_log_multilevel_for_detailed_events(initial_log, activity_tag_prefix): #hierarchy levels in file should be from the most abstract to almost the most detailed
     mapping = dict()
     separator = '_'
@@ -98,17 +138,14 @@ def mapping_from_log_multilevel_for_detailed_events(initial_log, activity_tag_pr
     for trace in initial_log:
         for event in trace:
             concept_name = event['concept:name']
+            if concept_name == 'GC/RestartEEStart':
+                print('GC/RestartEEStart')
 
             groups = {int(key.replace(activity_tag_prefix + separator, '')): val for key, val in event.items()
                       if key.startswith(activity_tag_prefix)}
 
             mapping.update({concept_name: groups})
 
-    return mapping
-
-
-def add_other_events_to_mapping(log, mapping):
-    # TODO
     return mapping
 
 
