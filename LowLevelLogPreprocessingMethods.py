@@ -1,23 +1,6 @@
 import json
 
-class Activity:
-    max_level = 100
-
-    def set_max_level(max):
-        max_level = max
-    def __init__(self, name="", level=-1):
-        self.level = level
-        self.name = name
-
-    def all_activity_for_level(self, level):
-        activities = set()
-        for leaf in self.leafs:
-            if leaf.level == level:
-                activities.add(leaf)
-        return activities
-
-
-
+from Activity import Activity
 
 def mapping_from_json_file(json_file_name):
     mapping = {}
@@ -138,14 +121,9 @@ def mapping_from_log_multilevel_for_detailed_events(initial_log, activity_tag_pr
     for trace in initial_log:
         for event in trace:
             concept_name = event['concept:name']
-            if concept_name == 'GC/RestartEEStart':
-                print('GC/RestartEEStart')
-
             groups = {int(key.replace(activity_tag_prefix + separator, '')): val for key, val in event.items()
                       if key.startswith(activity_tag_prefix)}
-
             mapping.update({concept_name: groups})
-
     return mapping
 
 
@@ -311,21 +289,24 @@ def find_set_of_cycles_bodies(log, t_invariants):
     return cycles_bodies_dict
 
 
-def change_cycles_bodies_to_special_sym(log, t_invariants, symbol):  # EventLog, set(tuple), str
-    possible_cycles_bodies = find_set_of_cycles_bodies(log, t_invariants)  # dict{index: body}
-    for trace in log:
-        for cycle_body in possible_cycles_bodies:
-            i = 0
-            for event in trace:
-                if i < len(possible_cycles_bodies[cycle_body]) and event["concept:name"] == \
-                        possible_cycles_bodies[cycle_body][i]:
-                    i += 1
-            if i == len(possible_cycles_bodies[cycle_body]):
-                j = 0
+def change_cycles_bodies_to_special_sym(log, t_invariants, symbol, log_with_mapping=False):
+    if log_with_mapping:
+        print('log_with_mapping')# EventLog, set(tuple), str
+    else:
+        possible_cycles_bodies = find_set_of_cycles_bodies(log, t_invariants)  # dict{index: body}
+        for trace in log:
+            for cycle_body in possible_cycles_bodies:
+                i = 0
+                for event in trace:
+                    if i < len(possible_cycles_bodies[cycle_body]) and event["concept:name"] == \
+                            possible_cycles_bodies[cycle_body][i]:
+                        i += 1
+                if i == len(possible_cycles_bodies[cycle_body]):
+                    j = 0
 
-                for event_current in trace:
-                    if j < len(possible_cycles_bodies[cycle_body]) and event_current["concept:name"] == \
-                            possible_cycles_bodies[cycle_body][j]:
-                        j += 1
-                        event_current["concept:name"] = symbol + str(cycle_body)
+                    for event_current in trace:
+                        if j < len(possible_cycles_bodies[cycle_body]) and event_current["concept:name"] == \
+                                possible_cycles_bodies[cycle_body][j]:
+                            j += 1
+                            event_current["concept:name"] = symbol + str(cycle_body)
     return possible_cycles_bodies, log

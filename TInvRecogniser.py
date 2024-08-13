@@ -14,6 +14,8 @@ from pm4py.algo.discovery.causal import algorithm as causal_algorithm
 from pm4py.algo.discovery.causal.algorithm import CAUSAL_ALPHA
 from pm4py.algo.discovery.causal.algorithm import CAUSAL_HEURISTIC
 
+from Activity import Activity
+
 
 def replace(trace, cyc, cyc_without_A_elements):
     indexes = []
@@ -44,7 +46,7 @@ class TInvRecogniser(object):
         self.causal_relations = {}
         self.parallel_relations = {}
 
-    def fill_t_inv(self):
+    def fill_t_inv(self, activity_tag_prefix="", separator=""):
         """
             Computes t invariants of a given log.
 
@@ -62,7 +64,10 @@ class TInvRecogniser(object):
 
         for trace in self.log:  # в оригинале был прогресс от лога отдельной переменной, а лог глобальной, в процедуре
             # запускалось от текущего прогресса и он инкрементился, то есть переходил к следующей трассе
-            trace_to_events_names_list = [event['concept:name'] for event in trace]
+            trace_to_events_names_list = []
+            for event in trace:
+                trace_to_events_names_list = [{int(key.replace(activity_tag_prefix + separator, '')): val for key, val in event.items()
+                        if key.startswith(activity_tag_prefix) }]
             if trace:
                 if tuple(
                         trace_to_events_names_list) not in self.visited_traces:  # класть в посещенные трассы только массив и сравнивать только его, не всю трассу с именем

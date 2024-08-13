@@ -20,6 +20,7 @@ def list_of_string_to_event_log(list_of_strings):
         final_log.append(t)
     return final_log
 
+
 def generate_nets_by_log_info(log, mapping, activity_tag=""):
     logs_mapping = dict()
     for event in mapping.keys():
@@ -67,7 +68,8 @@ def generate_nets_by_mapping(log, mapping, activity_tag=""):
                 logs_mapping[event].append(trace_for_event)
     return logs_mapping
 
-def generate_nets_by_activity_set(log, activity_set, activity_tag = "", separator="_", first_level_index = 0):
+
+def generate_nets_by_activity_set(log, activity_set, activity_tag="", separator="_", first_level_index=0):
     global groups
     logs_by_activities = dict()
     for event in activity_set:
@@ -88,20 +90,17 @@ def generate_nets_by_activity_set(log, activity_set, activity_tag = "", separato
                         deeper_level_activity = detailed_event['concept:name']
                     else:
                         deeper_level_activity = list(sorted_groups.values())[deeper_level]
-                        #deeper_level_activity = sorted_groups[deeper_level]
+                        # deeper_level_activity = sorted_groups[deeper_level]
                     trace_for_event.append(deeper_level_activity)
             if len(trace_for_event) > 0:
                 logs_by_activities[event].append(trace_for_event)
     return logs_by_activities
 
 
-
 def generate_nets_by_detailed_events_mapping(log, mapping, mapping_for_detailed_events):
     logs_mapping = dict()
     for event in mapping.keys():
         logs_mapping[event] = []
-        if event == 'Activity_2640':
-            print(2640)
         for trace in log:
             trace_for_event = []
             for detailed_event in trace:
@@ -110,15 +109,17 @@ def generate_nets_by_detailed_events_mapping(log, mapping, mapping_for_detailed_
                     detailed_event_string = detailed_event["concept:name"]
                 else:
                     detailed_event_string = detailed_event
-                if detailed_event_string == 'GC/RestartEEStart':
-                    print('GC/RestartEEStart')
                 if event in mapping_for_detailed_events[detailed_event_string].values():
-                    level = list(mapping_for_detailed_events[detailed_event_string].keys())[list(reversed(list(mapping_for_detailed_events[detailed_event_string].values()))).index(event)] #list(mapping_for_detailed_events[detailed_event_string].keys())[list(reversed(list(mapping_for_detailed_events[detailed_event_string].values()))).index(event)]
+                    level = list(mapping_for_detailed_events[detailed_event_string].keys())[
+                        list(reversed(list(mapping_for_detailed_events[detailed_event_string].values()))).index(
+                            event)]  # list(mapping_for_detailed_events[detailed_event_string].keys())[list(reversed(list(mapping_for_detailed_events[detailed_event_string].values()))).index(event)]
                     if level == max(mapping_for_detailed_events[detailed_event_string].keys()):
                         trace_for_event.append(detailed_event_string)
                     else:
                         try:
-                            trace_for_event.append(mapping_for_detailed_events[detailed_event_string][list(mapping_for_detailed_events[detailed_event_string].values()).index(event) + 1]) #depends on the first index in level mapping : level + 1 if the indexation starts from
+                            trace_for_event.append(mapping_for_detailed_events[detailed_event_string][list(
+                                mapping_for_detailed_events[detailed_event_string].values()).index(
+                                event) + 1])  # depends on the first index in level mapping : level + 1 if the indexation starts from
                         except KeyError:
                             print(mapping_for_detailed_events[detailed_event_string].values())
             if len(trace_for_event) > 0:
@@ -142,6 +143,7 @@ def dfs(G, v, desired, discovered):
         if w not in discovered:
             dfs(G, w, desired, discovered)
 
+
 def generate_nets_by_mapping_and_activities_dict(log, mapping, dict_for_events):
     logs_mapping = dict()
     for event in mapping.keys():
@@ -159,7 +161,7 @@ def generate_nets_by_mapping_and_activities_dict(log, mapping, dict_for_events):
                     if event in dict_for_events.keys() and trace_number in dict_for_events.get(event):
                         if int(dict_for_events.get(event).get(trace_number).get(
                                 'start_event')) <= detailed_event_number < int(
-                                dict_for_events.get(event).get(trace_number).get('events_number')):
+                            dict_for_events.get(event).get(trace_number).get('events_number')):
                             trace_for_event.append(detailed_event_string)
                 detailed_event_number += 1
             if len(trace_for_event) > 0:
@@ -170,14 +172,14 @@ def generate_nets_by_mapping_and_activities_dict(log, mapping, dict_for_events):
 
 def subnets_writers(dict_event_to_log):
     for event in dict_event_to_log.keys():
-        if(not ('cycle' in str(event))):
+        if (not ('cycle' in str(event))):
             log_for_event = list_of_string_to_event_log(dict_event_to_log[event])
             final_log_file_name = str(event) + '_final_log.xes'
             file_path_out = os.path.join(os.path.dirname(__file__), final_log_file_name)
             xes_exporter.apply(log_for_event, file_path_out)
-            #process_tree = inductive_miner.apply(log_for_event)
+            # process_tree = inductive_miner.apply(log_for_event)
             net, initial_marking, final_marking = heuristic_miner.apply(log_for_event)
-            #net, initial_marking, final_marking = pm4py.convert_to_petri_net(process_tree)
+            # net, initial_marking, final_marking = pm4py.convert_to_petri_net(process_tree)
             net_file_name = str(event) + 'log_sample_heu.pnml'
             net_path_out = os.path.join(os.path.dirname(__file__), net_file_name)
             pn_exporter.exporter.apply(net, initial_marking, net_path_out)
