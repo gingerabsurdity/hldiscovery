@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<log xes.version="1849-2016" xes.features="nested-attributes" xmlns="http://www.xes-standard.org/">
+	<extension name="Time" prefix="time" uri="http://www.xes-standard.org/time.xesext" />
+	<extension name="Concept" prefix="concept" uri="http://www.xes-standard.org/concept.xesext" />
+	<string key="origin" value="csv" />
+	<trace>
+		<string key="concept:name" value="Case_1" />
+		<event>
+			<string key="concept:name" value="Push" />
+			<date key="time:timestamp" value="2023-01-01T00:00:00+00:00" />
+			<int key="@@index" value="0" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing" />
+			<date key="time:timestamp" value="2023-01-01T00:00:59+00:00" />
+			<int key="@@index" value="1" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push" />
+			<date key="time:timestamp" value="2023-01-01T00:01:40+00:00" />
+			<int key="@@index" value="2" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing" />
+			<date key="time:timestamp" value="2023-01-01T00:03:20+00:00" />
+			<int key="@@index" value="3" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T00:03:39+00:00" />
+			<int key="@@index" value="4" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking" />
+			<date key="time:timestamp" value="2023-01-01T00:07:09.500000+00:00" />
+			<int key="@@index" value="5" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T00:07:33.500000+00:00" />
+			<int key="@@index" value="6" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking" />
+			<date key="time:timestamp" value="2023-01-01T00:08:40.500000+00:00" />
+			<int key="@@index" value="7" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T00:09:16+00:00" />
+			<int key="@@index" value="8" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking" />
+			<date key="time:timestamp" value="2023-01-01T00:09:59+00:00" />
+			<int key="@@index" value="9" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling downwards" />
+			<date key="time:timestamp" value="2023-01-01T00:11:09+00:00" />
+			<int key="@@index" value="10" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking" />
+			<date key="time:timestamp" value="2023-01-01T00:11:41+00:00" />
+			<int key="@@index" value="11" />
+			<int key="@@case_index" value="0" />
+		</event>
+	</trace>
+</log>

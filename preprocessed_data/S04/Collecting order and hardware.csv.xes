@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<log xes.version="1849-2016" xes.features="nested-attributes" xmlns="http://www.xes-standard.org/">
+	<extension name="Concept" prefix="concept" uri="http://www.xes-standard.org/concept.xesext" />
+	<extension name="Time" prefix="time" uri="http://www.xes-standard.org/time.xesext" />
+	<string key="origin" value="csv" />
+	<trace>
+		<string key="concept:name" value="Case_2" />
+		<event>
+			<string key="concept:name" value="Handling centred, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:00:00+00:00" />
+			<int key="@@index" value="0" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:04:35.500000+00:00" />
+			<int key="@@index" value="1" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:05:55.500000+00:00" />
+			<int key="@@index" value="2" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:10:06+00:00" />
+			<int key="@@index" value="3" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:13:42.500000+00:00" />
+			<int key="@@index" value="4" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:14:12+00:00" />
+			<int key="@@index" value="5" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:14:27+00:00" />
+			<int key="@@index" value="6" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:18:03.500000+00:00" />
+			<int key="@@index" value="7" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:19:51.500000+00:00" />
+			<int key="@@index" value="8" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling upwards, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:24:44.500000+00:00" />
+			<int key="@@index" value="9" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:25:18+00:00" />
+			<int key="@@index" value="10" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:25:54.500000+00:00" />
+			<int key="@@index" value="11" />
+			<int key="@@case_index" value="0" />
+		</event>
+	</trace>
+</log>

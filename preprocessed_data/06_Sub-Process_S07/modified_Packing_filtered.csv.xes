@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<log xes.version="1849-2016" xes.features="nested-attributes" xmlns="http://www.xes-standard.org/">
+	<extension name="Time" prefix="time" uri="http://www.xes-standard.org/time.xesext" />
+	<extension name="Concept" prefix="concept" uri="http://www.xes-standard.org/concept.xesext" />
+	<string key="origin" value="csv" />
+	<trace>
+		<string key="concept:name" value="Case_5" />
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T00:00:00+00:00" />
+			<int key="@@index" value="0" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Walking" />
+			<date key="time:timestamp" value="2023-01-01T00:13:58+00:00" />
+			<int key="@@index" value="1" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Handling upwards" />
+			<date key="time:timestamp" value="2023-01-01T00:14:21+00:00" />
+			<int key="@@index" value="2" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T00:15:08+00:00" />
+			<int key="@@index" value="3" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area" />
+			<date key="time:timestamp" value="2023-01-01T00:30:35.500000+00:00" />
+			<int key="@@index" value="4" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T00:30:52+00:00" />
+			<int key="@@index" value="5" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Standing" />
+			<date key="time:timestamp" value="2023-01-01T00:44:55.500000+00:00" />
+			<int key="@@index" value="6" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T00:45:01.500000+00:00" />
+			<int key="@@index" value="7" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Walking" />
+			<date key="time:timestamp" value="2023-01-01T00:45:53.500000+00:00" />
+			<int key="@@index" value="8" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Standing" />
+			<date key="time:timestamp" value="2023-01-01T00:46:08.500000+00:00" />
+			<int key="@@index" value="9" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T00:47:20.500000+00:00" />
+			<int key="@@index" value="10" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Add return label, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T00:49:26.500000+00:00" />
+			<int key="@@index" value="11" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T00:52:55.500000+00:00" />
+			<int key="@@index" value="12" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Handling downwards" />
+			<date key="time:timestamp" value="2023-01-01T01:03:32.500000+00:00" />
+			<int key="@@index" value="13" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Place cardboard box/item in a cart.1, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T01:04:08+00:00" />
+			<int key="@@index" value="14" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Place cardboard box/item in a cart.1, Packing/sorting area, Walking" />
+			<date key="time:timestamp" value="2023-01-01T01:04:49+00:00" />
+			<int key="@@index" value="15" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Place cardboard box/item in a cart.1, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T01:05:04.500000+00:00" />
+			<int key="@@index" value="16" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T01:05:50+00:00" />
+			<int key="@@index" value="17" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Standing" />
+			<date key="time:timestamp" value="2023-01-01T01:06:56.500000+00:00" />
+			<int key="@@index" value="18" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T01:07:09.500000+00:00" />
+			<int key="@@index" value="19" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Standing" />
+			<date key="time:timestamp" value="2023-01-01T01:08:16+00:00" />
+			<int key="@@index" value="20" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T01:08:26.500000+00:00" />
+			<int key="@@index" value="21" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Walking" />
+			<date key="time:timestamp" value="2023-01-01T01:44:28.500000+00:00" />
+			<int key="@@index" value="22" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T01:44:42+00:00" />
+			<int key="@@index" value="23" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Standing" />
+			<date key="time:timestamp" value="2023-01-01T01:48:31.500000+00:00" />
+			<int key="@@index" value="24" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T01:48:39.500000+00:00" />
+			<int key="@@index" value="25" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Standing" />
+			<date key="time:timestamp" value="2023-01-01T01:50:13+00:00" />
+			<int key="@@index" value="26" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T01:50:24+00:00" />
+			<int key="@@index" value="27" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Standing" />
+			<date key="time:timestamp" value="2023-01-01T01:50:47+00:00" />
+			<int key="@@index" value="28" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area" />
+			<date key="time:timestamp" value="2023-01-01T01:52:26.500000+00:00" />
+			<int key="@@index" value="29" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Standing" />
+			<date key="time:timestamp" value="2023-01-01T01:52:49.500000+00:00" />
+			<int key="@@index" value="30" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Add return label, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T01:53:39+00:00" />
+			<int key="@@index" value="31" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T01:57:27.500000+00:00" />
+			<int key="@@index" value="32" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Handling downwards" />
+			<date key="time:timestamp" value="2023-01-01T02:04:26.500000+00:00" />
+			<int key="@@index" value="33" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Place cardboard box/item in a cart.1, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T02:05:02+00:00" />
+			<int key="@@index" value="34" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T02:06:36.500000+00:00" />
+			<int key="@@index" value="35" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area" />
+			<date key="time:timestamp" value="2023-01-01T02:14:11.500000+00:00" />
+			<int key="@@index" value="36" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T02:14:41.500000+00:00" />
+			<int key="@@index" value="37" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Walking" />
+			<date key="time:timestamp" value="2023-01-01T02:34:24.500000+00:00" />
+			<int key="@@index" value="38" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T02:34:37+00:00" />
+			<int key="@@index" value="39" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area" />
+			<date key="time:timestamp" value="2023-01-01T02:41:55.500000+00:00" />
+			<int key="@@index" value="40" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T02:42:08+00:00" />
+			<int key="@@index" value="41" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Add return label, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T02:55:54.500000+00:00" />
+			<int key="@@index" value="42" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Add return label, Packing/sorting area" />
+			<date key="time:timestamp" value="2023-01-01T02:56:05.500000+00:00" />
+			<int key="@@index" value="43" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Add return label, Packing/sorting area, Standing" />
+			<date key="time:timestamp" value="2023-01-01T02:56:32.500000+00:00" />
+			<int key="@@index" value="44" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Add return label, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T02:57:14+00:00" />
+			<int key="@@index" value="45" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T03:00:43+00:00" />
+			<int key="@@index" value="46" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Place cardboard box/item in a cart.1, Packing/sorting area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T03:09:52.500000+00:00" />
+			<int key="@@index" value="47" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Packing, Place cardboard box/item in a cart.1, Packing/sorting area, Handling upwards" />
+			<date key="time:timestamp" value="2023-01-01T03:10:11+00:00" />
+			<int key="@@index" value="48" />
+			<int key="@@case_index" value="0" />
+		</event>
+	</trace>
+</log>

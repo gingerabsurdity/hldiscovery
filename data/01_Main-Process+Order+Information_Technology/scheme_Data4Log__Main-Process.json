@@ -1,0 +1,31 @@
+[   
+    [
+        "Main-Process",
+        [
+            "Retrieval",
+            "Storage",
+            "ANOTHER MAIN-PROCESS",
+            "MAIN-PROCESS UNKNOWN"
+        ]
+    ],
+    [
+        "Order",
+        [
+            "2904",
+            "2905",
+            "2906",
+            "NO ORDER",
+            "ORDER UNKNOWN"
+        ]
+    ],
+    [
+        "Information Technology",
+        [
+            "List + Pen",
+            "List + Glove Scanner",
+            "Portable Data Terminal",
+            "NO INFORMATION TECHNOLOGY",
+            "INFORMATION TECHNOLOGY UNKNOWN"
+        ]
+    ]
+]

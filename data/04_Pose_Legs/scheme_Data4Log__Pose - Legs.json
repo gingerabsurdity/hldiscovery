@@ -1,0 +1,33 @@
+[   
+    [
+        "Pose - Legs",
+        [
+            "Gait Cycle",
+            "Step",
+            "Standing Still",
+            "Sitting",
+            "Squat",
+            "Lunges",
+            "ANOTHER LEG POSE",
+            "LEG POSE UNKNOWN"
+        ]
+    ],
+    [
+        "Activity",
+        [
+            "Synchronization",
+            "Tick off / confirm",
+            "Scan",
+            "Pull",
+            "Push",
+            "Handling upwards",
+            "Handling centred",
+            "Handling downwards",
+            "Walking",
+            "Standing",
+            "Sitting",
+            "ANOTHER ACTIVITY",
+            "ACTIVITY UNKNOWN"
+        ]
+    ]
+]

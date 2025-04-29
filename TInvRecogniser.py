@@ -14,19 +14,20 @@ from pm4py.algo.discovery.causal import algorithm as causal_algorithm
 from pm4py.algo.discovery.causal.algorithm import CAUSAL_ALPHA
 from pm4py.algo.discovery.causal.algorithm import CAUSAL_HEURISTIC
 
-
+# simplifies the trace by removing detected cycles for further analysis
 def replace(trace, cyc, cyc_without_A_elements):
     indexes = []
-    for i in range(len(trace)):  # ищем цикл в трассе
+    for i in range(len(trace)):  # looking for a cycle in the trace
         if trace[i:i + len(cyc)] == cyc:
             indexes.extend([i, i + len(cyc)])
     trace_after_replace = trace
     if len(indexes) > 1:
-        del trace_after_replace[indexes[0]:indexes[1]]  # удаляем сус из трассы
+        del trace_after_replace[indexes[0]:indexes[1]]  # remove the cycle from the trace
+
         trace_after_replace[indexes[0]:indexes[0]] = list(cyc_without_A_elements)
     return trace_after_replace
 
-
+# identifies parts of a cycle that aren't already covered by known invariants
 def clear(cyc, A) -> list:
     if len(cyc.difference(A)) > 0:
         return cyc.difference(A)
@@ -54,27 +55,27 @@ class TInvRecogniser(object):
                 {()}
             """
         A = set()
-        dfg = dfg_discovery.apply(self.log)  # строим Directly follows graph для всего лога, чтобы найти отношения
+        dfg = dfg_discovery.apply(self.log) # build Directly follows graph for the entire log to find relationships
         self.causal_relations = set({k: v for k, v in
                                  causal_algorithm.apply(dfg, variant=CAUSAL_ALPHA).items() if
                                  v > 0}.keys())
         self.parallel_relations = {(f, t) for (f, t) in dfg if (t, f) in dfg}
 
-        for trace in self.log:  # в оригинале был прогресс от лога отдельной переменной, а лог глобальной, в процедуре
-            # запускалось от текущего прогресса и он инкрементился, то есть переходил к следующей трассе
+        for trace in self.log: # in the original there was progress from the log of a separate variable, and the log was global, in the procedure
+            # started from the current progress and it incremented, that is, it moved to the next track
             trace_to_events_names_list = [event['concept:name'] for event in trace]
             if trace:
                 if tuple(
-                        trace_to_events_names_list) not in self.visited_traces:  # класть в посещенные трассы только массив и сравнивать только его, не всю трассу с именем
+                        trace_to_events_names_list) not in self.visited_traces:  # put only an array into the visited traces and compare only it, not the entire trace with the name
                     self.visited_traces.add(
-                        tuple(trace_to_events_names_list))  # чтобы не обрабатывать одинаковые трассы
+                        tuple(trace_to_events_names_list)) # to avoid processing identical traces
                     flag = True
                     while flag:
                         # Find the elementary cycle in trace if there are some
                         ecyc = self.e_cyc(trace_to_events_names_list)
                         if ecyc is not None:
                             if self.no_nested_cyc:
-                                ecyc.sort() #TODO: проверить действительно ли тут сортед и если да, то в остальных местах тоже добавлять сортед
+                                ecyc.sort() #TODO: check if this is really sorted here and if so, then add sorted in other places too
                                 self.t_invariants.add(ecyc)
                                 flag = False
                             else:
@@ -86,7 +87,7 @@ class TInvRecogniser(object):
                                     for nodes_of_component in strongly_connected_components_of_eCyc:  # line 85
                                         if len(nodes_of_component) > 1:  # 87 |V_i|>1
                                             sorted_nodes_of_comp = sorted(nodes_of_component)
-                                            if tuple(nodes_of_component) not in self.t_invariants: #TODO: добавить проверку, что одно не входит в другое и, если входит, то добавлять только то множество, которое больше
+                                            if tuple(nodes_of_component) not in self.t_invariants: #TODO: add a check that one is not included in the other and, if it is, then add only the set that is greater
                                                 result = False
                                                 inv_to_remove = []
                                                 for inv in self.t_invariants:
@@ -107,7 +108,7 @@ class TInvRecogniser(object):
                                     trace_to_events_names_list = replace(trace_to_events_names_list, ecyc,
                                                                          ecyc_without_t_inv_nodes)
                                     self.visited_cycs[tuple(
-                                        ecyc)] = nodes_of_component  # мб только если в компоненте больше 1 элемента
+                                        ecyc)] = nodes_of_component  # mb only if the component has more than 1 element
                                     ecyc = self.e_cyc(trace_to_events_names_list)
                                 else:
                                     for aux in self.visited_cycs.get(tuple(ecyc)):
@@ -140,7 +141,7 @@ class TInvRecogniser(object):
                     return ecyc
             analyzed_events.append((event))
         return None
-
+    # adds new T-invariants to the set of discovered invariants
     def add_invariant(self, invariant_to_add):  # invariant_to_add should be sorted beforehand
         add = True
         t_inv_to_remove = list()

@@ -1,0 +1,32 @@
+[   
+    [
+        "Pose - Torso",
+        [
+            "No Bending",
+            "Slightly Bending",
+            "Strongly Bending",
+            "Torso Rotation",
+            "ANOTHER TORSO POSE",
+            "TORSO POSE UNKNOWN"
+        ]
+    ],
+    [
+        "Activity",
+        [
+            "Synchronization",
+            "Tick off / confirm",
+            "Scan",
+            "Pull",
+            "Push",
+            "Handling upwards",
+            "Handling centred",
+            "Handling downwards",
+            "Walking",
+            "Standing",
+            "Sitting",
+            "ANOTHER ACTIVITY",
+            "ACTIVITY UNKNOWN"
+        ]
+    ]
+
+]

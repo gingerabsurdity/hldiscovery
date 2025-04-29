@@ -1,0 +1,20 @@
+[   
+    [
+        "Activity",
+        [
+            "Synchronization",
+            "Tick off / confirm",
+            "Scan",
+            "Pull",
+            "Push",
+            "Handling upwards",
+            "Handling centred",
+            "Handling downwards",
+            "Walking",
+            "Standing",
+            "Sitting",
+            "ANOTHER ACTIVITY",
+            "ACTIVITY UNKNOWN"
+        ]
+    ]
+]

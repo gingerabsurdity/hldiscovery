@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<log xes.version="1849-2016" xes.features="nested-attributes" xmlns="http://www.xes-standard.org/">
+	<extension name="Time" prefix="time" uri="http://www.xes-standard.org/time.xesext" />
+	<extension name="Concept" prefix="concept" uri="http://www.xes-standard.org/concept.xesext" />
+	<string key="origin" value="csv" />
+	<trace>
+		<string key="concept:name" value="Case_0" />
+		<event>
+			<string key="concept:name" value="Collecting cart, Path, Walking" />
+			<date key="time:timestamp" value="2023-01-01T00:00:00+00:00" />
+			<int key="@@index" value="0" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Collecting cart, Cart area, Walking" />
+			<date key="time:timestamp" value="2023-01-01T00:02:03.500000+00:00" />
+			<int key="@@index" value="1" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Collecting cart, Cart area, Handling upwards" />
+			<date key="time:timestamp" value="2023-01-01T00:02:18+00:00" />
+			<int key="@@index" value="2" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Collecting cart, Cart area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T00:03:03+00:00" />
+			<int key="@@index" value="3" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Collecting cart, Cart area, Standing" />
+			<date key="time:timestamp" value="2023-01-01T00:03:26+00:00" />
+			<int key="@@index" value="4" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Collecting cart, Cart area, Pull" />
+			<date key="time:timestamp" value="2023-01-01T00:03:41+00:00" />
+			<int key="@@index" value="5" />
+			<int key="@@case_index" value="0" />
+		</event>
+	</trace>
+</log>

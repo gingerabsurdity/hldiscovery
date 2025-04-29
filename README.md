@@ -1,5 +1,7 @@
-# hldiscovery
+[documentation](https://overleaf.uni-rostock.de/read/mvcqwnwddpwf#5f63b2)
 
+# hldiscovery
+## Intro
 Here you can find algorithm implementation as a set of __PM4Py__ using modules.
 
 In this repository, there are implementation of our algorithm and the results of the qualitative experimental evaluation of it.
@@ -34,3 +36,12 @@ For 10 initial logs (100 traces in each) from the **initial logs** folder the fi
 For all of the initial logs was used the same parameter as steps maximum (100 steps). If we revise the resulting Petri nets (in **final_nets** folders for all parameters) and look at the output data in the file **console_output.txt** - we will see in detail which transitions were problematic in every case. There are also timing evaluations and in the average case, the time is compared with the usual inductive miner working time for the detailed log. However, there is a class of logs with cycles that could lead to complexity growing because of the increased number of possible combinations of high-level event log variations.
 
 In the future, it could be interesting to find the optimal characteristics of generated logs or to find out another way how to define cycles even more precise way, than it was in this work. Also, it is necessary to define a class of logs with bigger time complexity to find out the way of algorithm optimization.
+
+
+## Running
+
+```
+python 00_convert_data_csv_to_xes.py
+python initial_miner.py
+python output.py
+```

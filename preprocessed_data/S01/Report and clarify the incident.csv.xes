@@ -1,0 +1,1005 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<log xes.version="1849-2016" xes.features="nested-attributes" xmlns="http://www.xes-standard.org/">
+	<extension name="Concept" prefix="concept" uri="http://www.xes-standard.org/concept.xesext" />
+	<extension name="Time" prefix="time" uri="http://www.xes-standard.org/time.xesext" />
+	<string key="origin" value="csv" />
+	<trace>
+		<string key="concept:name" value="Case_7" />
+		<event>
+			<string key="concept:name" value="Walking, 1, front" />
+			<date key="time:timestamp" value="2023-01-01T00:00:00+00:00" />
+			<int key="@@index" value="0" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 1-2" />
+			<date key="time:timestamp" value="2023-01-01T00:00:11+00:00" />
+			<int key="@@index" value="1" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T00:00:36.500000+00:00" />
+			<int key="@@index" value="2" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T00:00:59.500000+00:00" />
+			<int key="@@index" value="3" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:01:14+00:00" />
+			<int key="@@index" value="4" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:01:21.500000+00:00" />
+			<int key="@@index" value="5" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:02:17+00:00" />
+			<int key="@@index" value="6" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:02:58.500000+00:00" />
+			<int key="@@index" value="7" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:04:08+00:00" />
+			<int key="@@index" value="8" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T00:04:21+00:00" />
+			<int key="@@index" value="9" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T00:04:36.500000+00:00" />
+			<int key="@@index" value="10" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T00:05:28+00:00" />
+			<int key="@@index" value="11" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 1-2" />
+			<date key="time:timestamp" value="2023-01-01T00:05:49.500000+00:00" />
+			<int key="@@index" value="12" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 1, front" />
+			<date key="time:timestamp" value="2023-01-01T00:06:18+00:00" />
+			<int key="@@index" value="13" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 1-2" />
+			<date key="time:timestamp" value="2023-01-01T00:06:57.500000+00:00" />
+			<int key="@@index" value="14" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T00:07:25.500000+00:00" />
+			<int key="@@index" value="15" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T00:07:53.500000+00:00" />
+			<int key="@@index" value="16" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:08:05.500000+00:00" />
+			<int key="@@index" value="17" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:08:20.500000+00:00" />
+			<int key="@@index" value="18" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:09:06.500000+00:00" />
+			<int key="@@index" value="19" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:10:13.500000+00:00" />
+			<int key="@@index" value="20" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:10:45+00:00" />
+			<int key="@@index" value="21" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:11:39.500000+00:00" />
+			<int key="@@index" value="22" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:11:59+00:00" />
+			<int key="@@index" value="23" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:15:25+00:00" />
+			<int key="@@index" value="24" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:15:49.500000+00:00" />
+			<int key="@@index" value="25" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T00:16:04.500000+00:00" />
+			<int key="@@index" value="26" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T00:16:17+00:00" />
+			<int key="@@index" value="27" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 1-2" />
+			<date key="time:timestamp" value="2023-01-01T00:16:42.500000+00:00" />
+			<int key="@@index" value="28" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 1, front" />
+			<date key="time:timestamp" value="2023-01-01T00:17:16.500000+00:00" />
+			<int key="@@index" value="29" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 1, back" />
+			<date key="time:timestamp" value="2023-01-01T00:17:29.500000+00:00" />
+			<int key="@@index" value="30" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 1, front" />
+			<date key="time:timestamp" value="2023-01-01T00:17:59+00:00" />
+			<int key="@@index" value="31" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 1-2" />
+			<date key="time:timestamp" value="2023-01-01T00:18:30.500000+00:00" />
+			<int key="@@index" value="32" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T00:19:11.500000+00:00" />
+			<int key="@@index" value="33" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T00:19:34+00:00" />
+			<int key="@@index" value="34" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:19:43.500000+00:00" />
+			<int key="@@index" value="35" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:19:59+00:00" />
+			<int key="@@index" value="36" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:20:42.500000+00:00" />
+			<int key="@@index" value="37" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:22:37.500000+00:00" />
+			<int key="@@index" value="38" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:23:26.500000+00:00" />
+			<int key="@@index" value="39" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:23:47+00:00" />
+			<int key="@@index" value="40" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:23:51.500000+00:00" />
+			<int key="@@index" value="41" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="1, front" />
+			<date key="time:timestamp" value="2023-01-01T00:24:23+00:00" />
+			<int key="@@index" value="42" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 1, front" />
+			<date key="time:timestamp" value="2023-01-01T00:24:29.500000+00:00" />
+			<int key="@@index" value="43" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, 1, front" />
+			<date key="time:timestamp" value="2023-01-01T00:24:43+00:00" />
+			<int key="@@index" value="44" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 1, front" />
+			<date key="time:timestamp" value="2023-01-01T00:25:16+00:00" />
+			<int key="@@index" value="45" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 1, back" />
+			<date key="time:timestamp" value="2023-01-01T00:25:34.500000+00:00" />
+			<int key="@@index" value="46" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 1, front" />
+			<date key="time:timestamp" value="2023-01-01T00:26:16.500000+00:00" />
+			<int key="@@index" value="47" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 1-2" />
+			<date key="time:timestamp" value="2023-01-01T00:26:42.500000+00:00" />
+			<int key="@@index" value="48" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T00:27:10+00:00" />
+			<int key="@@index" value="49" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T00:27:35.500000+00:00" />
+			<int key="@@index" value="50" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:27:53+00:00" />
+			<int key="@@index" value="51" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:28:08+00:00" />
+			<int key="@@index" value="52" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:28:23+00:00" />
+			<int key="@@index" value="53" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:28:51+00:00" />
+			<int key="@@index" value="54" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:29:11.500000+00:00" />
+			<int key="@@index" value="55" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T00:29:18.500000+00:00" />
+			<int key="@@index" value="56" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T00:29:38+00:00" />
+			<int key="@@index" value="57" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 1-2" />
+			<date key="time:timestamp" value="2023-01-01T00:30:04.500000+00:00" />
+			<int key="@@index" value="58" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 1, front" />
+			<date key="time:timestamp" value="2023-01-01T00:30:27.500000+00:00" />
+			<int key="@@index" value="59" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 1, back" />
+			<date key="time:timestamp" value="2023-01-01T00:30:51.500000+00:00" />
+			<int key="@@index" value="60" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, 1, back" />
+			<date key="time:timestamp" value="2023-01-01T00:31:19+00:00" />
+			<int key="@@index" value="61" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, 1, back" />
+			<date key="time:timestamp" value="2023-01-01T00:31:32+00:00" />
+			<int key="@@index" value="62" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Scan, 1, back" />
+			<date key="time:timestamp" value="2023-01-01T00:31:45.500000+00:00" />
+			<int key="@@index" value="63" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, 1, back" />
+			<date key="time:timestamp" value="2023-01-01T00:34:10.500000+00:00" />
+			<int key="@@index" value="64" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, 1, back" />
+			<date key="time:timestamp" value="2023-01-01T00:34:25+00:00" />
+			<int key="@@index" value="65" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, 1, back" />
+			<date key="time:timestamp" value="2023-01-01T00:35:19+00:00" />
+			<int key="@@index" value="66" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, 1, back" />
+			<date key="time:timestamp" value="2023-01-01T00:35:31+00:00" />
+			<int key="@@index" value="67" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, 1, back" />
+			<date key="time:timestamp" value="2023-01-01T00:46:09+00:00" />
+			<int key="@@index" value="68" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T00:46:52.500000+00:00" />
+			<int key="@@index" value="69" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T00:47:27.500000+00:00" />
+			<int key="@@index" value="70" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:47:38+00:00" />
+			<int key="@@index" value="71" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:47:59.500000+00:00" />
+			<int key="@@index" value="72" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:48:58+00:00" />
+			<int key="@@index" value="73" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:49:26.500000+00:00" />
+			<int key="@@index" value="74" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:49:53+00:00" />
+			<int key="@@index" value="75" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T00:50:05.500000+00:00" />
+			<int key="@@index" value="76" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T00:50:24.500000+00:00" />
+			<int key="@@index" value="77" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="1, back" />
+			<date key="time:timestamp" value="2023-01-01T00:50:43.500000+00:00" />
+			<int key="@@index" value="78" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="1, front" />
+			<date key="time:timestamp" value="2023-01-01T00:51:23+00:00" />
+			<int key="@@index" value="79" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 1-2" />
+			<date key="time:timestamp" value="2023-01-01T00:51:49+00:00" />
+			<int key="@@index" value="80" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T00:52:04.500000+00:00" />
+			<int key="@@index" value="81" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T00:52:27.500000+00:00" />
+			<int key="@@index" value="82" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:52:34+00:00" />
+			<int key="@@index" value="83" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:52:54+00:00" />
+			<int key="@@index" value="84" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:53:36+00:00" />
+			<int key="@@index" value="85" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:53:50+00:00" />
+			<int key="@@index" value="86" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:55:17+00:00" />
+			<int key="@@index" value="87" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:56:02.500000+00:00" />
+			<int key="@@index" value="88" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:56:09.500000+00:00" />
+			<int key="@@index" value="89" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T00:56:19.500000+00:00" />
+			<int key="@@index" value="90" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T00:56:30.500000+00:00" />
+			<int key="@@index" value="91" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, 1-2" />
+			<date key="time:timestamp" value="2023-01-01T00:57:01+00:00" />
+			<int key="@@index" value="92" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 1-2" />
+			<date key="time:timestamp" value="2023-01-01T00:57:48+00:00" />
+			<int key="@@index" value="93" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 1, front" />
+			<date key="time:timestamp" value="2023-01-01T00:58:09+00:00" />
+			<int key="@@index" value="94" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="1, front" />
+			<date key="time:timestamp" value="2023-01-01T00:58:16+00:00" />
+			<int key="@@index" value="95" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="1, back" />
+			<date key="time:timestamp" value="2023-01-01T00:58:33+00:00" />
+			<int key="@@index" value="96" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="3, front" />
+			<date key="time:timestamp" value="2023-01-01T01:00:08.500000+00:00" />
+			<int key="@@index" value="97" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:00:17+00:00" />
+			<int key="@@index" value="98" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:00:50.500000+00:00" />
+			<int key="@@index" value="99" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:01:35.500000+00:00" />
+			<int key="@@index" value="100" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:01:55.500000+00:00" />
+			<int key="@@index" value="101" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:02:15.500000+00:00" />
+			<int key="@@index" value="102" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:03:36+00:00" />
+			<int key="@@index" value="103" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="3, front" />
+			<date key="time:timestamp" value="2023-01-01T01:03:51+00:00" />
+			<int key="@@index" value="104" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, 1-2" />
+			<date key="time:timestamp" value="2023-01-01T01:04:18.500000+00:00" />
+			<int key="@@index" value="105" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Pull, 1-2" />
+			<date key="time:timestamp" value="2023-01-01T01:04:28+00:00" />
+			<int key="@@index" value="106" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Pull, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T01:05:36+00:00" />
+			<int key="@@index" value="107" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Pull, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T01:06:29+00:00" />
+			<int key="@@index" value="108" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T01:07:14+00:00" />
+			<int key="@@index" value="109" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T01:07:36.500000+00:00" />
+			<int key="@@index" value="110" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:08:13.500000+00:00" />
+			<int key="@@index" value="111" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:08:35.500000+00:00" />
+			<int key="@@index" value="112" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:11:28+00:00" />
+			<int key="@@index" value="113" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Packing/sorting area" />
+			<date key="time:timestamp" value="2023-01-01T01:11:42.500000+00:00" />
+			<int key="@@index" value="114" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T01:12:21.500000+00:00" />
+			<int key="@@index" value="115" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:13:02.500000+00:00" />
+			<int key="@@index" value="116" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:13:59.500000+00:00" />
+			<int key="@@index" value="117" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:14:30.500000+00:00" />
+			<int key="@@index" value="118" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T01:15:08+00:00" />
+			<int key="@@index" value="119" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Packing/sorting area" />
+			<date key="time:timestamp" value="2023-01-01T01:15:29.500000+00:00" />
+			<int key="@@index" value="120" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 1-2" />
+			<date key="time:timestamp" value="2023-01-01T01:15:54+00:00" />
+			<int key="@@index" value="121" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T01:16:06.500000+00:00" />
+			<int key="@@index" value="122" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T01:16:29+00:00" />
+			<int key="@@index" value="123" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T01:16:39+00:00" />
+			<int key="@@index" value="124" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:16:53.500000+00:00" />
+			<int key="@@index" value="125" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:17:41.500000+00:00" />
+			<int key="@@index" value="126" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:18:09.500000+00:00" />
+			<int key="@@index" value="127" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T01:18:47+00:00" />
+			<int key="@@index" value="128" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T01:19:00+00:00" />
+			<int key="@@index" value="129" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T01:19:09+00:00" />
+			<int key="@@index" value="130" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling upwards, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T01:19:27.500000+00:00" />
+			<int key="@@index" value="131" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling upwards, 1-2" />
+			<date key="time:timestamp" value="2023-01-01T01:19:32.500000+00:00" />
+			<int key="@@index" value="132" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 2, front" />
+			<date key="time:timestamp" value="2023-01-01T01:20:21.500000+00:00" />
+			<int key="@@index" value="133" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T01:20:34+00:00" />
+			<int key="@@index" value="134" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T01:21:04+00:00" />
+			<int key="@@index" value="135" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T01:21:13.500000+00:00" />
+			<int key="@@index" value="136" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:21:29+00:00" />
+			<int key="@@index" value="137" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:22:19+00:00" />
+			<int key="@@index" value="138" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:24:17.500000+00:00" />
+			<int key="@@index" value="139" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T01:24:53.500000+00:00" />
+			<int key="@@index" value="140" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T01:25:12.500000+00:00" />
+			<int key="@@index" value="141" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T01:25:18.500000+00:00" />
+			<int key="@@index" value="142" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 3, back" />
+			<date key="time:timestamp" value="2023-01-01T01:25:42+00:00" />
+			<int key="@@index" value="143" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 3, front" />
+			<date key="time:timestamp" value="2023-01-01T01:25:48.500000+00:00" />
+			<int key="@@index" value="144" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T01:26:10.500000+00:00" />
+			<int key="@@index" value="145" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling upwards, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T01:26:28+00:00" />
+			<int key="@@index" value="146" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling upwards, 1-2" />
+			<date key="time:timestamp" value="2023-01-01T01:26:32.500000+00:00" />
+			<int key="@@index" value="147" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling downwards, 1-2" />
+			<date key="time:timestamp" value="2023-01-01T01:28:18.500000+00:00" />
+			<int key="@@index" value="148" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, 1-2" />
+			<date key="time:timestamp" value="2023-01-01T01:28:55.500000+00:00" />
+			<int key="@@index" value="149" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T01:29:36.500000+00:00" />
+			<int key="@@index" value="150" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T01:29:44.500000+00:00" />
+			<int key="@@index" value="151" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T01:29:58.500000+00:00" />
+			<int key="@@index" value="152" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T01:30:06.500000+00:00" />
+			<int key="@@index" value="153" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:30:23+00:00" />
+			<int key="@@index" value="154" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:30:53.500000+00:00" />
+			<int key="@@index" value="155" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:32:02.500000+00:00" />
+			<int key="@@index" value="156" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:33:22+00:00" />
+			<int key="@@index" value="157" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:33:31.500000+00:00" />
+			<int key="@@index" value="158" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:33:52+00:00" />
+			<int key="@@index" value="159" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:34:12.500000+00:00" />
+			<int key="@@index" value="160" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Office" />
+			<date key="time:timestamp" value="2023-01-01T01:34:33+00:00" />
+			<int key="@@index" value="161" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T01:35:04+00:00" />
+			<int key="@@index" value="162" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T01:35:24+00:00" />
+			<int key="@@index" value="163" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 3, front" />
+			<date key="time:timestamp" value="2023-01-01T01:35:48.500000+00:00" />
+			<int key="@@index" value="164" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 3, back" />
+			<date key="time:timestamp" value="2023-01-01T01:36:09.500000+00:00" />
+			<int key="@@index" value="165" />
+			<int key="@@case_index" value="0" />
+		</event>
+	</trace>
+</log>

@@ -19,9 +19,9 @@ import os
 
 # arr2 = arr[:3]
 
-path = "BPI Challenge 2017.xes"
+path = "C://Users//baumt//Desktop//HA//11WS24//AI//Uni-Rostock-neidi//preprocessed_data//06_Sub-Process//01_Sub-Process_onlypacking.xes"
 # path = "BPIC15_1f.xes"
-file_path = os.path.join(os.path.join(os.path.dirname(__file__), "TKDE_Benchmark"), path)
+file_path = os.path.join(os.path.join(os.path.dirname(__file__), "tests"), path)
 log = pm4py.read.read_xes(file_path)
 
 process_tree = heuristic_miner.apply(log)
@@ -40,6 +40,6 @@ replayed_traces = token_replay.apply(log, net, initial_marking, final_marking)
 # replayed_traces = token_replay.apply(initial_log, detailed_net, initial_marking, final_marking)
 print(str(replayed_traces))
 
-net_file_name = 'final_net_BPIC17_ind.pnml'
+net_file_name = 'output.pnml'
 net_path_out = os.path.join(os.path.dirname(__file__), net_file_name)
 pn_exporter.exporter.apply(net, initial_marking, net_path_out)

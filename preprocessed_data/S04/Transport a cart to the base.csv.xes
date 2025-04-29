@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<log xes.version="1849-2016" xes.features="nested-attributes" xmlns="http://www.xes-standard.org/">
+	<extension name="Concept" prefix="concept" uri="http://www.xes-standard.org/concept.xesext" />
+	<extension name="Time" prefix="time" uri="http://www.xes-standard.org/time.xesext" />
+	<string key="origin" value="csv" />
+	<trace>
+		<string key="concept:name" value="Case_13" />
+		<event>
+			<string key="concept:name" value="Pull, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:00:00+00:00" />
+			<int key="@@index" value="0" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:00:36+00:00" />
+			<int key="@@index" value="1" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T00:01:20+00:00" />
+			<int key="@@index" value="2" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T00:01:52+00:00" />
+			<int key="@@index" value="3" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Pull, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:02:15+00:00" />
+			<int key="@@index" value="4" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:02:41+00:00" />
+			<int key="@@index" value="5" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T00:03:26+00:00" />
+			<int key="@@index" value="6" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T00:03:46.500000+00:00" />
+			<int key="@@index" value="7" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Pull, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:04:23+00:00" />
+			<int key="@@index" value="8" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:04:45.500000+00:00" />
+			<int key="@@index" value="9" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T00:05:37.500000+00:00" />
+			<int key="@@index" value="10" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T00:06:03+00:00" />
+			<int key="@@index" value="11" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T00:06:23.500000+00:00" />
+			<int key="@@index" value="12" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Pull, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:06:32+00:00" />
+			<int key="@@index" value="13" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:07:39+00:00" />
+			<int key="@@index" value="14" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T00:09:00+00:00" />
+			<int key="@@index" value="15" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T00:09:18.500000+00:00" />
+			<int key="@@index" value="16" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, 1-2" />
+			<date key="time:timestamp" value="2023-01-01T00:09:49+00:00" />
+			<int key="@@index" value="17" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Pull, Path (Cardboard box area)" />
+			<date key="time:timestamp" value="2023-01-01T00:10:15.500000+00:00" />
+			<int key="@@index" value="18" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Pull, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:11:25.500000+00:00" />
+			<int key="@@index" value="19" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:11:42.500000+00:00" />
+			<int key="@@index" value="20" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:12:33.500000+00:00" />
+			<int key="@@index" value="21" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Pull, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:12:49.500000+00:00" />
+			<int key="@@index" value="22" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Pull, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T00:13:57+00:00" />
+			<int key="@@index" value="23" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T00:14:32.500000+00:00" />
+			<int key="@@index" value="24" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, 2-3" />
+			<date key="time:timestamp" value="2023-01-01T00:14:55.500000+00:00" />
+			<int key="@@index" value="25" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, Base" />
+			<date key="time:timestamp" value="2023-01-01T00:15:28+00:00" />
+			<int key="@@index" value="26" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Pull, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:15:38+00:00" />
+			<int key="@@index" value="27" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, Path (Office)" />
+			<date key="time:timestamp" value="2023-01-01T00:16:23.500000+00:00" />
+			<int key="@@index" value="28" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T00:17:38+00:00" />
+			<int key="@@index" value="29" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T00:17:51+00:00" />
+			<int key="@@index" value="30" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling upwards, 3-4" />
+			<date key="time:timestamp" value="2023-01-01T00:18:01.500000+00:00" />
+			<int key="@@index" value="31" />
+			<int key="@@case_index" value="0" />
+		</event>
+	</trace>
+</log>

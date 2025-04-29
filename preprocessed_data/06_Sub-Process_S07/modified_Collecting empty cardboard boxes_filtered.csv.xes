@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<log xes.version="1849-2016" xes.features="nested-attributes" xmlns="http://www.xes-standard.org/">
+	<extension name="Time" prefix="time" uri="http://www.xes-standard.org/time.xesext" />
+	<extension name="Concept" prefix="concept" uri="http://www.xes-standard.org/concept.xesext" />
+	<string key="origin" value="csv" />
+	<trace>
+		<string key="concept:name" value="Case_1" />
+		<event>
+			<string key="concept:name" value="Collecting empty cardboard boxes, Path, Pull" />
+			<date key="time:timestamp" value="2023-01-01T00:00:00+00:00" />
+			<int key="@@index" value="0" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Collecting empty cardboard boxes, Path, Push" />
+			<date key="time:timestamp" value="2023-01-01T00:02:19+00:00" />
+			<int key="@@index" value="1" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Collecting empty cardboard boxes, Cardboard box area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T00:02:47.500000+00:00" />
+			<int key="@@index" value="2" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Collecting empty cardboard boxes, Path, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T00:04:26+00:00" />
+			<int key="@@index" value="3" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Collecting empty cardboard boxes, Path, Push" />
+			<date key="time:timestamp" value="2023-01-01T00:04:40.500000+00:00" />
+			<int key="@@index" value="4" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Collecting empty cardboard boxes, Path, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T00:06:23+00:00" />
+			<int key="@@index" value="5" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Collecting empty cardboard boxes, Cardboard box area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T00:06:27.500000+00:00" />
+			<int key="@@index" value="6" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Collecting empty cardboard boxes, Path, Push" />
+			<date key="time:timestamp" value="2023-01-01T00:07:55.500000+00:00" />
+			<int key="@@index" value="7" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Collecting empty cardboard boxes, Cardboard box area, Push" />
+			<date key="time:timestamp" value="2023-01-01T00:09:30.500000+00:00" />
+			<int key="@@index" value="8" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Collecting empty cardboard boxes, Cardboard box area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T00:09:34.500000+00:00" />
+			<int key="@@index" value="9" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Collecting empty cardboard boxes, Cardboard box area, Walking" />
+			<date key="time:timestamp" value="2023-01-01T00:09:45.500000+00:00" />
+			<int key="@@index" value="10" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Collecting empty cardboard boxes, Cardboard box area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T00:10:00.500000+00:00" />
+			<int key="@@index" value="11" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Collecting empty cardboard boxes, Cardboard box area, Standing" />
+			<date key="time:timestamp" value="2023-01-01T00:10:24.500000+00:00" />
+			<int key="@@index" value="12" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Collecting empty cardboard boxes, Cardboard box area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T00:10:34+00:00" />
+			<int key="@@index" value="13" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Collecting empty cardboard boxes, Cardboard box area" />
+			<date key="time:timestamp" value="2023-01-01T00:11:00.500000+00:00" />
+			<int key="@@index" value="14" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Collecting empty cardboard boxes, Cardboard box area, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T00:11:18.500000+00:00" />
+			<int key="@@index" value="15" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Collecting empty cardboard boxes, Cardboard box area, Pull" />
+			<date key="time:timestamp" value="2023-01-01T00:11:35+00:00" />
+			<int key="@@index" value="16" />
+			<int key="@@case_index" value="0" />
+		</event>
+	</trace>
+</log>

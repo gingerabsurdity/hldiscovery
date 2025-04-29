@@ -1,0 +1,53 @@
+[   
+    [
+        "Area",
+        [
+            "Office",
+            "Cart area",
+            "Cardboard box area",
+            "Base",
+            "Packing/sorting area",
+            "Issuing/receiving area",
+            "Path",
+            "Cross aisle path",
+            "Aisle path"
+        ]
+    ],
+    [
+        "Path",
+        [
+            "Path (Office)",
+            "Path (Cardboard box area)",
+            "Path (Cart area)",
+            "Path (Issuing area)"
+        ]
+    ],
+    [
+        "Cross aisle path",
+        [
+            "1-2",
+            "2-3",
+            "3-4",
+            "4-5"
+        ]
+    ],
+    [
+        "Aisle path",
+        [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "front",
+            "back"
+        ]
+    ],
+    [
+        "Other",
+        [
+            "ANOTHER LOCATION",
+            "LOCATION UNKNOWN"
+        ]
+    ]
+]

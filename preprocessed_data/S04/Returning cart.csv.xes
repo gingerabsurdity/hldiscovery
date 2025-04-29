@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<log xes.version="1849-2016" xes.features="nested-attributes" xmlns="http://www.xes-standard.org/">
+	<extension name="Concept" prefix="concept" uri="http://www.xes-standard.org/concept.xesext" />
+	<extension name="Time" prefix="time" uri="http://www.xes-standard.org/time.xesext" />
+	<string key="origin" value="csv" />
+	<trace>
+		<string key="concept:name" value="Case_8" />
+		<event>
+			<string key="concept:name" value="Pull, Path (Cardboard box area)" />
+			<date key="time:timestamp" value="2023-01-01T00:00:00+00:00" />
+			<int key="@@index" value="0" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Pull, Path (Cart area)" />
+			<date key="time:timestamp" value="2023-01-01T00:00:25+00:00" />
+			<int key="@@index" value="1" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, Path (Cart area)" />
+			<date key="time:timestamp" value="2023-01-01T00:01:31+00:00" />
+			<int key="@@index" value="2" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, Cart area" />
+			<date key="time:timestamp" value="2023-01-01T00:02:10.500000+00:00" />
+			<int key="@@index" value="3" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Cart area" />
+			<date key="time:timestamp" value="2023-01-01T00:02:51.500000+00:00" />
+			<int key="@@index" value="4" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, Cart area" />
+			<date key="time:timestamp" value="2023-01-01T00:03:06+00:00" />
+			<int key="@@index" value="5" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Pull, Path (Issuing area)" />
+			<date key="time:timestamp" value="2023-01-01T00:04:21.500000+00:00" />
+			<int key="@@index" value="6" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Pull, Path (Cardboard box area)" />
+			<date key="time:timestamp" value="2023-01-01T00:04:51.500000+00:00" />
+			<int key="@@index" value="7" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Pull, Path (Cart area)" />
+			<date key="time:timestamp" value="2023-01-01T00:05:28+00:00" />
+			<int key="@@index" value="8" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Pull, Cart area" />
+			<date key="time:timestamp" value="2023-01-01T00:06:21.500000+00:00" />
+			<int key="@@index" value="9" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, Cart area" />
+			<date key="time:timestamp" value="2023-01-01T00:07:15.500000+00:00" />
+			<int key="@@index" value="10" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling upwards, Cart area" />
+			<date key="time:timestamp" value="2023-01-01T00:07:53.500000+00:00" />
+			<int key="@@index" value="11" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Cart area" />
+			<date key="time:timestamp" value="2023-01-01T00:08:42.500000+00:00" />
+			<int key="@@index" value="12" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Handling centred, Cart area" />
+			<date key="time:timestamp" value="2023-01-01T00:08:57.500000+00:00" />
+			<int key="@@index" value="13" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Pull, Path (Cardboard box area)" />
+			<date key="time:timestamp" value="2023-01-01T00:09:27.500000+00:00" />
+			<int key="@@index" value="14" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, Path (Cardboard box area)" />
+			<date key="time:timestamp" value="2023-01-01T00:10:06.500000+00:00" />
+			<int key="@@index" value="15" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, Path (Cart area)" />
+			<date key="time:timestamp" value="2023-01-01T00:10:27+00:00" />
+			<int key="@@index" value="16" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Path (Cart area)" />
+			<date key="time:timestamp" value="2023-01-01T00:11:27+00:00" />
+			<int key="@@index" value="17" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Standing, Cart area" />
+			<date key="time:timestamp" value="2023-01-01T00:11:30+00:00" />
+			<int key="@@index" value="18" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Pull, Cart area" />
+			<date key="time:timestamp" value="2023-01-01T00:11:41+00:00" />
+			<int key="@@index" value="19" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Push, Cart area" />
+			<date key="time:timestamp" value="2023-01-01T00:12:07+00:00" />
+			<int key="@@index" value="20" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Walking, Cart area" />
+			<date key="time:timestamp" value="2023-01-01T00:12:45+00:00" />
+			<int key="@@index" value="21" />
+			<int key="@@case_index" value="0" />
+		</event>
+	</trace>
+</log>

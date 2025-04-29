@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<pnml>
+  <net id="imdf_net_1730820625.111975" type="http://www.pnml.org/version-2009/grammar/pnmlcoremodel">
+    <name>
+      <text>imdf_net_1730820625.111975</text>
+    </name>
+    <page id="n0">
+      <place id="p_5">
+        <name>
+          <text>p_5</text>
+        </name>
+      </place>
+      <place id="sink">
+        <name>
+          <text>sink</text>
+        </name>
+      </place>
+      <place id="p_6">
+        <name>
+          <text>p_6</text>
+        </name>
+      </place>
+      <place id="source">
+        <name>
+          <text>source</text>
+        </name>
+        <initialMarking>
+          <text>1</text>
+        </initialMarking>
+      </place>
+      <transition id="c32d0baa-59f6-4aeb-964d-2d3503755cd0">
+        <name>
+          <text>b</text>
+        </name>
+      </transition>
+      <transition id="b6e0aed7-710b-4a5b-9458-1d7b73dd42bb">
+        <name>
+          <text>a</text>
+        </name>
+      </transition>
+      <transition id="11e3c46e-05b0-468e-ad9c-bad93cd372ec">
+        <name>
+          <text>c</text>
+        </name>
+      </transition>
+      <transition id="skip_4">
+        <name>
+          <text>skip_4</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="901ba4a5-9c51-4040-8333-c96d20628147"/>
+      </transition>
+      <arc id="140409233490496" source="source" target="b6e0aed7-710b-4a5b-9458-1d7b73dd42bb"/>
+      <arc id="140409233491224" source="c32d0baa-59f6-4aeb-964d-2d3503755cd0" target="p_6"/>
+      <arc id="140409233492064" source="skip_4" target="sink"/>
+      <arc id="140409233491448" source="p_6" target="11e3c46e-05b0-468e-ad9c-bad93cd372ec"/>
+      <arc id="140409233492008" source="11e3c46e-05b0-468e-ad9c-bad93cd372ec" target="p_5"/>
+      <arc id="140409233491784" source="p_6" target="skip_4"/>
+      <arc id="140409233491056" source="p_5" target="c32d0baa-59f6-4aeb-964d-2d3503755cd0"/>
+      <arc id="140409233492120" source="b6e0aed7-710b-4a5b-9458-1d7b73dd42bb" target="p_5"/>
+    </page>
+  </net>
+</pnml>

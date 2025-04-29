@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<log xes.version="1849-2016" xes.features="nested-attributes" xmlns="http://www.xes-standard.org/">
+	<extension name="Time" prefix="time" uri="http://www.xes-standard.org/time.xesext" />
+	<extension name="Concept" prefix="concept" uri="http://www.xes-standard.org/concept.xesext" />
+	<string key="origin" value="csv" />
+	<trace>
+		<string key="concept:name" value="Case_10" />
+		<event>
+			<string key="concept:name" value="Returning hardware, Path, Push" />
+			<date key="time:timestamp" value="2023-01-01T00:00:00+00:00" />
+			<int key="@@index" value="0" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Returning hardware, Office, Push" />
+			<date key="time:timestamp" value="2023-01-01T00:00:10+00:00" />
+			<int key="@@index" value="1" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Returning hardware, Office, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T00:00:47.500000+00:00" />
+			<int key="@@index" value="2" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Returning hardware, Office, Handling upwards" />
+			<date key="time:timestamp" value="2023-01-01T00:00:56+00:00" />
+			<int key="@@index" value="3" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Returning hardware, Office, Walking" />
+			<date key="time:timestamp" value="2023-01-01T00:01:36.500000+00:00" />
+			<int key="@@index" value="4" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Returning hardware, Office, Standing" />
+			<date key="time:timestamp" value="2023-01-01T00:02:20.500000+00:00" />
+			<int key="@@index" value="5" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Returning hardware, Office, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T00:03:18+00:00" />
+			<int key="@@index" value="6" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Returning hardware, Office" />
+			<date key="time:timestamp" value="2023-01-01T00:03:58.500000+00:00" />
+			<int key="@@index" value="7" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Returning hardware, Path, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T00:06:00.500000+00:00" />
+			<int key="@@index" value="8" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Returning hardware, Path, Push" />
+			<date key="time:timestamp" value="2023-01-01T00:06:13+00:00" />
+			<int key="@@index" value="9" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Returning hardware, Office, Push" />
+			<date key="time:timestamp" value="2023-01-01T00:06:23.500000+00:00" />
+			<int key="@@index" value="10" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Returning hardware, Office, Handling upwards" />
+			<date key="time:timestamp" value="2023-01-01T00:07:07+00:00" />
+			<int key="@@index" value="11" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Returning hardware, Office, Standing" />
+			<date key="time:timestamp" value="2023-01-01T00:07:38.500000+00:00" />
+			<int key="@@index" value="12" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Returning hardware, Office, Walking" />
+			<date key="time:timestamp" value="2023-01-01T00:07:46.500000+00:00" />
+			<int key="@@index" value="13" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Returning hardware, Office, Standing" />
+			<date key="time:timestamp" value="2023-01-01T00:08:38.500000+00:00" />
+			<int key="@@index" value="14" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Returning hardware, Office, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T00:11:52.500000+00:00" />
+			<int key="@@index" value="15" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Returning hardware, Office, Push" />
+			<date key="time:timestamp" value="2023-01-01T00:12:24.500000+00:00" />
+			<int key="@@index" value="16" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Returning hardware, Office, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T00:12:55.500000+00:00" />
+			<int key="@@index" value="17" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Returning hardware, Office, Walking" />
+			<date key="time:timestamp" value="2023-01-01T00:13:19.500000+00:00" />
+			<int key="@@index" value="18" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Returning hardware, Office, Standing" />
+			<date key="time:timestamp" value="2023-01-01T00:13:56+00:00" />
+			<int key="@@index" value="19" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Returning hardware, Office, Handling centred" />
+			<date key="time:timestamp" value="2023-01-01T00:16:27.500000+00:00" />
+			<int key="@@index" value="20" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<string key="concept:name" value="Returning hardware, Office, Standing" />
+			<date key="time:timestamp" value="2023-01-01T00:17:03+00:00" />
+			<int key="@@index" value="21" />
+			<int key="@@case_index" value="0" />
+		</event>
+	</trace>
+</log>
